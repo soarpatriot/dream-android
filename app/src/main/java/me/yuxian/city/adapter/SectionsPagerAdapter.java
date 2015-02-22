@@ -37,11 +37,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Locale l = Locale.getDefault();
         switch (position) {
             case 0:
-                return "aa".toUpperCase(l);
+                return "商品信息".toUpperCase(l);
             case 1:
-                return "fff".toUpperCase(l);
+                return "吃喝玩乐".toUpperCase(l);
             case 2:
-                return "fsdf".toUpperCase(l);
+                return "传奇".toUpperCase(l);
         }
         return null;
     }
