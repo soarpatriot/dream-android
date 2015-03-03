@@ -11,4 +11,6 @@
     <string name="action_login">登陆</string>
     <string name="action_register">注册</string>
     <string name="action_settings">个人设置</string>
+    <string name="title_activity_login">登陆</string>
+    <string name="title_activity_register">register</string>
 </resources>

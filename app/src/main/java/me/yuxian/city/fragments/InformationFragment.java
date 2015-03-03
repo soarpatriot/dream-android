@@ -1,5 +1,6 @@
 package me.yuxian.city.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -75,15 +76,14 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
 
 
         mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mSwipeLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
         mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, mDatas);
         mListView.setAdapter(mAdapter);
 
         return rootView;
     }
 
-    
+
 
     public void onRefresh()
     {
