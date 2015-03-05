@@ -1,9 +1,8 @@
-package me.yuxian.city;
+package cn.dreamreality;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,23 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-import me.yuxian.city.handlers.LoginHandler;
-import me.yuxian.city.runners.LoginRunner;
+import cn.dreamreality.handlers.LoginHandler;
+import cn.dreamreality.runners.LoginRunner;
 
 
 public class LoginActivity extends ActionBarActivity {

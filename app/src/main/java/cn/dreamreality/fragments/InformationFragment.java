@@ -1,4 +1,4 @@
-package me.yuxian.city.fragments;
+package cn.dreamreality.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.yuxian.city.R;
+import cn.dreamreality.R;
 
 /**
  * Created by liuhaibao on 15/2/22.

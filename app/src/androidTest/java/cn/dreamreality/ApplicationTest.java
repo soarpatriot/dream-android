@@ -1,4 +1,4 @@
-package me.yuxian.city;
+package cn.dreamreality;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

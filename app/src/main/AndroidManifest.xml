@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.yuxian.city" >
+    package="cn.dreamreality" >
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -38,7 +38,7 @@
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.yuxian.city.MainActivity" />
+                android:value="me.yuxian.dreamreality.MainActivity" />
         </activity>
         <activity
             android:name=".RegisterActivity"
@@ -46,7 +46,7 @@
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.yuxian.city.LoginActivity" />
+                android:value="me.yuxian.dreamreality.LoginActivity" />
         </activity>
     </application>
 

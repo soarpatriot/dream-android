@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "me.yuxian.city"
+        applicationId "cn.dreamreality"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

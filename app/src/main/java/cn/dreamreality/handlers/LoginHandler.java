@@ -1,16 +1,14 @@
-package me.yuxian.city.handlers;
+package cn.dreamreality.handlers;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import me.yuxian.city.LoginActivity;
-import me.yuxian.city.MainActivity;
+import cn.dreamreality.MainActivity;
 
 /**
  * Created by liuhaibao on 15/3/5.

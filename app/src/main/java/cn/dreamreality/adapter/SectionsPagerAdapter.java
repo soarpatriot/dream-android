@@ -1,4 +1,4 @@
-package me.yuxian.city.adapter;
+package cn.dreamreality.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,8 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
 
-import me.yuxian.city.R;
-import me.yuxian.city.fragments.InformationFragment;
+import cn.dreamreality.fragments.InformationFragment;
 
 /**
  * Created by liuhaibao on 15/2/22.

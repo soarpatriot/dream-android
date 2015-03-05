@@ -1,4 +1,4 @@
-package me.yuxian.city.runners;
+package cn.dreamreality.runners;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,7 +16,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 

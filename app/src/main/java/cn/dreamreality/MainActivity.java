@@ -1,4 +1,4 @@
-package me.yuxian.city;
+package cn.dreamreality;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import me.yuxian.city.adapter.SectionsPagerAdapter;
+import cn.dreamreality.adapter.SectionsPagerAdapter;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {

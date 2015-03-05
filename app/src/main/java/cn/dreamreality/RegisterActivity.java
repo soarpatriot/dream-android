@@ -1,4 +1,4 @@
-package me.yuxian.city;
+package cn.dreamreality;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
