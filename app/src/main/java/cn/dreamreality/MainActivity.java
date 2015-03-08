@@ -7,10 +7,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import cn.dreamreality.adapter.SectionsPagerAdapter;
+import cn.dreamreality.utils.SettingsUtils;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -93,17 +96,24 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             case R.id.action_login:
 
-                //return true;
-                // 在action bar点击app icon; 回到 home
-
-
                 Intent intent = new Intent(this, LoginActivity.class);
-
-
                 startActivity(intent);
 
                 return true;
+            case R.id.action_dream:
 
+                String token =  SettingsUtils.getSettings(this.getApplicationContext(), "token");
+
+                if(TextUtils.isEmpty(token)){
+                    Toast.makeText(this.getApplicationContext(), R.string.no_login_tips,
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    intent = new Intent(this, DreamActivity.class);
+                    startActivity(intent);
+                }
+
+
+                return true;
             default:
 
                 return super.onOptionsItemSelected(item);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.dreamreality.R;
+import cn.dreamreality.adapter.DreamListAdapter;
+import cn.dreamreality.entities.DreamReality;
+import cn.dreamreality.handlers.DreamListHandler;
+import cn.dreamreality.runners.DreamRunner;
+import cn.dreamreality.utils.SettingsUtils;
 
 /**
  * Created by liuhaibao on 15/2/22.
@@ -30,25 +36,9 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
     private static final int REFRESH_COMPLETE = 0X110;
     private SwipeRefreshLayout mSwipeLayout;
     private ListView mListView;
-    private ArrayAdapter mAdapter;
-    private List<String> mDatas = new ArrayList<String>(Arrays.asList("Java", "Javascript", "C++", "Ruby", "Json",
-            "HTML"));
+    private DreamListAdapter mAdapter;
 
-    private Handler mHandler = new Handler()
-    {
-        public void handleMessage(android.os.Message msg)
-        {
-            switch (msg.what)
-            {
-                case REFRESH_COMPLETE:
-                    mDatas.addAll(Arrays.asList("Lucene", "Canvas", "Bitmap"));
-                    mAdapter.notifyDataSetChanged();
-                    mSwipeLayout.setRefreshing(false);
-                    break;
-
-            }
-        };
-    };
+    private ArrayList<DreamReality> dreamLists  = new ArrayList<DreamReality>();
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -77,8 +67,24 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
 
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
-        mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, mDatas);
+
+
+
+
+        String token =  SettingsUtils.getSettings(this.getActivity().getApplicationContext(), "token");
+
+        Log.i(this.getClass().toString(), "token:" + token);
+
+        mAdapter = new DreamListAdapter(this.getActivity().getApplicationContext(), dreamLists);
         mListView.setAdapter(mAdapter);
+
+        DreamListHandler dreamListHandler = new DreamListHandler(this.getActivity().getApplication(),mAdapter);
+        DreamRunner runner = new DreamRunner(0,token,dreamListHandler);
+        runner.start();
+
+        //mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, mDatas);
+
+
 
         return rootView;
     }
@@ -90,7 +96,7 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
         // Log.e("xxx", Thread.currentThread().getName());
         // UI Thread
 
-        mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
+        //mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
 
     }
 

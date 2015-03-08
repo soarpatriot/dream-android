@@ -19,38 +19,39 @@ import org.json.JSONTokener;
 import java.util.LinkedList;
 import java.util.List;
 
-import cn.dreamreality.utils.SettingsUtils;
-
+import cn.dreamreality.utils.Config;
 
 /**
- * Created by liuhaibao on 15/3/5.
+ * Created by liuhaibao on 15/3/8.
  */
-public class LoginRunner extends Thread {
-    private String username;
-    private String password;
+public class PostRunner extends Thread {
+
+    private String dream;
+    private String reality;
+    private String token;
     private Handler handler;
 
-    public LoginRunner(String username, String password, Handler handler){
-        this.username = username;
-        this.password = password;
+    public PostRunner(String dream, String reality,String token, Handler handler){
+        this.dream = dream;
+        this.reality = reality;
         this.handler = handler;
+        this.token = token;
     }
 
-    public void run(){
+    public void run() {
 
         Message msg = new Message();
         Bundle data = new Bundle();
 
 
         List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
-        params.add(new BasicNameValuePair("name", this.getUsername()));
-        params.add(new BasicNameValuePair("password", this.getPassword()));
+
+        params.add(new BasicNameValuePair("auth_token", token));
+        params.add(new BasicNameValuePair("dream", dream));
+        params.add(new BasicNameValuePair("reality", reality));
 
 
-        String baseUrl = "http://api.dreamreality.cn/v1/user";
-
-        //将URL与参数拼接
-        HttpPost postMethod = new HttpPost(baseUrl + "/login");
+        HttpPost postMethod = new HttpPost(Config.POST_URL);
 
 
         try {
@@ -68,14 +69,11 @@ public class LoginRunner extends Thread {
             JSONTokener jsonParser = new JSONTokener(entityStr);
             JSONObject result = (JSONObject) jsonParser.nextValue();
 
-            if ( !String.valueOf(statusCode).startsWith("20") && !String.valueOf(statusCode).startsWith("30") ){
-                data.putString("code",String.valueOf(statusCode));
-                data.putString("message",result.getString("error"));
-            }else{
-                data.putString("code",String.valueOf(statusCode));
-                data.putString("token",result.getString("token"));
-
-
+            if (!String.valueOf(statusCode).startsWith("20") && !String.valueOf(statusCode).startsWith("30")) {
+                data.putString("code", String.valueOf(statusCode));
+                data.putString("message", result.getString("error"));
+            } else {
+                data.putString("code", String.valueOf(statusCode));
             }
 
             msg.setData(data);
@@ -83,28 +81,11 @@ public class LoginRunner extends Thread {
 
 
         } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

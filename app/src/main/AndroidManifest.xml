@@ -48,6 +48,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.yuxian.dreamreality.LoginActivity" />
         </activity>
+        <activity
+            android:name=".DreamActivity"
+            android:label="@string/title_activity_dream"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.dreamreality.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,16 +1,28 @@
 <resources>
-    <string name="app_name">蔚县@我</string>
+    <string name="app_name">梦想照近现实</string>
 
 
-    <string name="title_section1">商品信息</string>
-    <string name="title_section2">吃喝玩乐</string>
-    <string name="title_section3">传奇</string>
+    <string name="title_section1">经典</string>
+    <string name="title_section2">最新</string>
+    <string name="title_section3">已完成</string>
 
     <string name="hello_world">Hello world!</string>
 
     <string name="action_login">登陆</string>
     <string name="action_register">注册</string>
+    <string name="action_dream">写梦想</string>
     <string name="action_settings">个人设置</string>
     <string name="title_activity_login">登陆</string>
-    <string name="title_activity_register">register</string>
+    <string name="title_activity_register">注册</string>
+    <string name="title_activity_dream">写下我的梦想</string>
+
+    <string name="no_login_tips">为了梦想，先登陆或注册吧！</string>
+
+
+    <string name="submit_text">提交</string>
+    <string name="dream_text">梦想</string>
+    <string name="reality_text">现实</string>
+    <string name="write_dream_hint">我的梦想闪耀着彩色的光！</string>
+    <string name="write_reality_hint">歪，醒醒！</string>
+
 </resources>

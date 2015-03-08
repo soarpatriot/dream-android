@@ -1,6 +1,5 @@
 package cn.dreamreality.handlers;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,13 +11,12 @@ import cn.dreamreality.MainActivity;
 import cn.dreamreality.utils.SettingsUtils;
 
 /**
- * Created by liuhaibao on 15/3/5.
+ * Created by liuhaibao on 15/3/8.
  */
-public class LoginHandler extends Handler {
-
+public class PostHandler extends Handler {
     private View v;
 
-    public LoginHandler(View v){
+    public PostHandler(View v){
         this.v = v;
     }
     @Override
@@ -33,7 +31,6 @@ public class LoginHandler extends Handler {
                     Toast.LENGTH_SHORT).show();
         }else{
 
-            SettingsUtils.putSettings(v.getContext().getApplicationContext(), "token", data.getString("token"));
             Intent intent = new Intent(v.getContext(), MainActivity.class);
             v.getContext().startActivity(intent);
         }
