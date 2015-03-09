@@ -43,9 +43,6 @@ public class DreamListHandler extends Handler {
 
         JSONObject jsonObject = null;
 
-
-
-
         if ( !code.startsWith("20") && !code.startsWith("30") ){
             try{
                 jsonObject = new JSONObject(result);
@@ -79,11 +76,8 @@ public class DreamListHandler extends Handler {
                 dreamAdapter.addData(dreamLists);
 
             }catch (Exception e){
-
+                e.printStackTrace();
             }
-
-
-
         }
     }
 }

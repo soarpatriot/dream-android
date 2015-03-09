@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.Locale;
 
 import cn.dreamreality.fragments.InformationFragment;
+import cn.dreamreality.fragments.NewestFragment;
 
 /**
  * Created by liuhaibao on 15/2/22.
@@ -21,8 +22,18 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        InformationFragment informationFragment = new InformationFragment();
-        return informationFragment;
+
+        //Fragment fragment = null;
+        switch (position) {
+            case 0:
+                return new InformationFragment();
+            case 1:
+                return new NewestFragment();
+            case 2:
+                return new NewestFragment();
+        }
+
+        return null;
     }
 
     @Override
