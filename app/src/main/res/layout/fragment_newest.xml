@@ -11,7 +11,10 @@
         android:id="@+id/pull_to_refresh_listview"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="google"
+
+        ptr:ptrReleaseLabel="更新梦想成功"
         />
 
 </RelativeLayout>

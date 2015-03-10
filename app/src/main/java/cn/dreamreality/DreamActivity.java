@@ -35,7 +35,7 @@ public class DreamActivity extends ActionBarActivity {
                 String dream_text = dream_edit_text.getText().toString();
                 String reality_text = reality_edit_text.getText().toString();
 
-                PostHandler postHandler = new PostHandler(v);
+                PostHandler postHandler = new PostHandler(v.getContext());
                 String token = SettingsUtils.getSettings(v.getContext().getApplicationContext(),"token");
                 PostRunner runner = new PostRunner(dream_text,reality_text,token,postHandler);
                 runner.start();

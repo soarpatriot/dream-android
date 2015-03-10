@@ -32,6 +32,11 @@ public class DreamListAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void setData(List<DreamReality> list) {
+        this.dreamsRealities.clear();
+        this.dreamsRealities.addAll(list);
+        this.notifyDataSetChanged();
+    }
     public void addData(List<DreamReality> list) {
         this.dreamsRealities.addAll(list);
         this.notifyDataSetChanged();

@@ -25,4 +25,7 @@
     <string name="write_dream_hint">我的梦想闪耀着彩色的光！</string>
     <string name="write_reality_hint">歪，醒醒！</string>
 
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

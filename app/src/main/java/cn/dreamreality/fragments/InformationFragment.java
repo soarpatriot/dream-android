@@ -1,27 +1,24 @@
 package cn.dreamreality.fragments;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
+
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import cn.dreamreality.R;
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
-import cn.dreamreality.handlers.DreamListHandler;
+import cn.dreamreality.handlers.RefreshHandler;
 import cn.dreamreality.runners.DreamRunner;
-import cn.dreamreality.utils.SettingsUtils;
 
 /**
  * Created by liuhaibao on 15/2/22.
@@ -70,18 +67,13 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
 
 
 
-
-        String token =  SettingsUtils.getSettings(this.getActivity().getApplicationContext(), "token");
-
-        Log.i(this.getClass().toString(), "token:" + token);
-
-        mAdapter = new DreamListAdapter(this.getActivity().getApplicationContext(), dreamLists);
+        /*mAdapter = new DreamListAdapter(this.getActivity().getApplicationContext(), dreamLists);
         mListView.setAdapter(mAdapter);
 
-        DreamListHandler dreamListHandler = new DreamListHandler(this.getActivity().getApplication(),mAdapter);
-        DreamRunner runner = new DreamRunner(0,token,dreamListHandler);
+        RefreshHandler refreshHandler = new RefreshHandler(this.getActivity().getApplication(),mAdapter);
+        DreamRunner runner = new DreamRunner(0, refreshHandler);
         runner.start();
-
+*/
         //mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, mDatas);
 
 
@@ -93,12 +85,12 @@ public class InformationFragment extends Fragment implements SwipeRefreshLayout.
 
     public void onRefresh()
     {
-        // Log.e("xxx", Thread.currentThread().getName());
-        // UI Thread
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                mSwipeLayout.setRefreshing(false);
 
-        //mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
-
+            }
+        }, 3000);
     }
-
 
 }

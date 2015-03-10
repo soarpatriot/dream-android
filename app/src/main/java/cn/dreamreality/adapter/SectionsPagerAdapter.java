@@ -1,5 +1,6 @@
 package cn.dreamreality.adapter;
 
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,6 +9,7 @@ import java.util.Locale;
 
 import cn.dreamreality.fragments.InformationFragment;
 import cn.dreamreality.fragments.NewestFragment;
+import cn.dreamreality.fragments.UncompletedFragment;
 
 /**
  * Created by liuhaibao on 15/2/22.
@@ -30,7 +32,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new NewestFragment();
             case 2:
-                return new NewestFragment();
+                return new UncompletedFragment();
         }
 
         return null;

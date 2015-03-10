@@ -1,46 +1,48 @@
-package cn.dreamreality.runners;
+package cn.dreamreality.tasks;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.BaseAdapter;
+import android.widget.Toast;
+
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
+import cn.dreamreality.adapter.DreamListAdapter;
+import cn.dreamreality.entities.DreamReality;
 import cn.dreamreality.utils.Config;
 
 /**
- * Created by liuhaibao on 15/3/8.
+ * Created by liuhaibao on 15/3/9.
  */
-public class DreamRunner extends Thread {
-
-    private int before = 0;
+public class RefreshTask extends AsyncTask<Void, Void, String>
+{
 
     private Handler handler;
 
-    public DreamRunner(int before,Handler handler){
-        this.before = before;
+    public RefreshTask(Handler handler){
         this.handler = handler;
+
     }
-
-    public void run() {
-
+    @Override
+    protected String doInBackground(Void... params)
+    {
         Message msg = new Message();
         Bundle data = new Bundle();
-
         HttpGet getMethod = new HttpGet(Config.POST_URL);
         try {
 
@@ -53,15 +55,11 @@ public class DreamRunner extends Thread {
             Log.i(this.getClass().toString(), "resCode = " + statusCode); //获取响应码
             Log.i(this.getClass().toString(), "resMessage = " + entityStr); //获取响应码
 
-            //JSONTokener jsonParser = new JSONTokener(entityStr);
-            //JSONObject result = (JSONObject) jsonParser.nextValue();
-
-            data.putString("code", String.valueOf(statusCode));
-            data.putString("result", entityStr);
+            data.putInt("code",statusCode);
+            data.putString("result",entityStr);
 
             msg.setData(data);
             handler.sendMessage(msg);
-
 
         } catch (ClientProtocolException e) {
 
@@ -70,5 +68,15 @@ public class DreamRunner extends Thread {
 
             e.printStackTrace();
         }
+        return "";
     }
+
+    @Override
+    protected void onPostExecute(String result)
+    {
+
+    }
+
+
+
 }

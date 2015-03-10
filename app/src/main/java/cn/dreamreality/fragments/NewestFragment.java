@@ -1,27 +1,29 @@
 package cn.dreamreality.fragments;
 
-import android.graphics.Color;
+
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
 
+import cn.dreamreality.MainActivity;
 import cn.dreamreality.R;
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
-import cn.dreamreality.handlers.DreamListHandler;
-import cn.dreamreality.runners.DreamRunner;
-import cn.dreamreality.tasks.PostTask;
-import cn.dreamreality.utils.SettingsUtils;
+import cn.dreamreality.handlers.PostHandler;
+import cn.dreamreality.handlers.RefreshAddHandler;
+import cn.dreamreality.handlers.RefreshHandler;
+import cn.dreamreality.tasks.RefreshTask;
 
 /**
  * Created by liuhaibao on 15/3/9.
@@ -36,9 +38,9 @@ public class NewestFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final int REFRESH_COMPLETE = 0X110;
 
-    private ListView mListView;
-    private DreamListAdapter mAdapter;
 
+    private DreamListAdapter mAdapter;
+    private PullToRefreshListView pullToRefreshView;
     private ArrayList<DreamReality> dreamLists  = new ArrayList<DreamReality>();
 
     private int count = 0;
@@ -67,27 +69,36 @@ public class NewestFragment extends Fragment {
 
 
         mAdapter = new DreamListAdapter(this.getActivity().getApplicationContext(), dreamLists);
-        final PullToRefreshListView pullToRefreshView = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
+        pullToRefreshView = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
         pullToRefreshView.setAdapter(mAdapter);
 
-        if(count++ <= 0){
-            PostTask postTask = new PostTask(mAdapter,pullToRefreshView);
-            postTask.execute();
-        }
+        final RefreshHandler refreshHandler = new RefreshHandler(rootView.getContext(),pullToRefreshView,mAdapter);
 
+        final RefreshAddHandler refreshAddHandler = new RefreshAddHandler(rootView.getContext(),pullToRefreshView,mAdapter);
+        RefreshTask refreshTask = new RefreshTask(refreshHandler);
+        refreshTask.execute();
 
         pullToRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 // Do work to refresh the list here.
 
-                PostTask postTask = new PostTask(mAdapter,pullToRefreshView);
-                postTask.execute();
+                RefreshTask refreshTask = new RefreshTask(refreshHandler);
+                refreshTask.execute();
 
 
             }
         });
+        // Add an end-of-list listener
+        pullToRefreshView.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
 
+            @Override
+            public void onLastItemVisible() {
+                Log.i(this.getClass().toString(),"refresh last");
+                RefreshTask refreshTask = new RefreshTask(refreshAddHandler);
+                refreshTask.execute();
+            }
+        });
         return rootView;
     }
 

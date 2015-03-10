@@ -1,76 +1,50 @@
-package cn.dreamreality.tasks;
+package cn.dreamreality.handlers;
 
 import android.content.Context;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.widget.BaseAdapter;
+import android.view.View;
 import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 
+import cn.dreamreality.MainActivity;
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
-import cn.dreamreality.utils.Config;
+import cn.dreamreality.utils.SettingsUtils;
 
 /**
- * Created by liuhaibao on 15/3/9.
+ * Created by liuhaibao on 15/3/8.
  */
-public class PostTask extends AsyncTask<Void, Void, String>
-{
-
-    private PullToRefreshListView pullToRefreshView;
-
+public class RefreshHandler extends Handler {
 
     private Context context;
     private DreamListAdapter dreamAdapter;
+    private PullToRefreshListView pullToRefreshView;
     private ArrayList<DreamReality> dreamLists;
 
-    public PostTask(DreamListAdapter dreamAdapter, PullToRefreshListView pullToRefreshView){
-        this.dreamAdapter = dreamAdapter;
+    public RefreshHandler(Context context, PullToRefreshListView pullToRefreshView, DreamListAdapter dreamAdapter){
         this.pullToRefreshView = pullToRefreshView;
+        this.context = context;
+        this.dreamAdapter = dreamAdapter;
     }
     @Override
-    protected String doInBackground(Void... params)
-    {
-        HttpGet getMethod = new HttpGet(Config.POST_URL);
-        try {
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        Bundle data = msg.getData();
+        int code = data.getInt("code");
+        String result = data.getString("result");
 
-
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpResponse response = httpClient.execute(getMethod);
-
-            int statusCode = response.getStatusLine().getStatusCode();
-            String entityStr = EntityUtils.toString(response.getEntity(), "utf-8");
-            Log.i(this.getClass().toString(), "resCode = " + statusCode); //获取响应码
-            Log.i(this.getClass().toString(), "resMessage = " + entityStr); //获取响应码
-
-            dealList(statusCode,entityStr);
-
-
-        } catch (ClientProtocolException e) {
-
-            e.printStackTrace();
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    @Override
-    protected void onPostExecute(String result)
-    {
+        dealList(code,result);
         pullToRefreshView.onRefreshComplete();
     }
 
@@ -107,12 +81,11 @@ public class PostTask extends AsyncTask<Void, Void, String>
 
                 }
 
-                dreamAdapter.addData(dreamLists);
+                dreamAdapter.setData(dreamLists);
 
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
     }
-
 }
