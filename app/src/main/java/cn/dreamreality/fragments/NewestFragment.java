@@ -1,6 +1,7 @@
 package cn.dreamreality.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -64,9 +65,9 @@ public class NewestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_newest, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_newest, container, false);
 
-
+        final Context context = rootView.getContext();
 
         mAdapter = new DreamListAdapter(this.getActivity().getApplicationContext(), dreamLists);
         pullToRefreshView = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
@@ -75,30 +76,30 @@ public class NewestFragment extends Fragment {
         final RefreshHandler refreshHandler = new RefreshHandler(rootView.getContext(),pullToRefreshView,mAdapter);
 
         final RefreshAddHandler refreshAddHandler = new RefreshAddHandler(rootView.getContext(),pullToRefreshView,mAdapter);
-        RefreshTask refreshTask = new RefreshTask(refreshHandler);
-        refreshTask.execute();
 
-        pullToRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+        int before = mAdapter.getCount();
+        RefreshTask refreshTask = new RefreshTask(rootView.getContext(),mAdapter,pullToRefreshView,RefreshTask.Type.REFRESH.ordinal());
+        refreshTask.execute(before);
+
+        pullToRefreshView.setMode(PullToRefreshBase.Mode.BOTH);
+
+
+        pullToRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                // Do work to refresh the list here.
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> listViewPullToRefreshBase) {
+                RefreshTask refreshTask = new RefreshTask(context,mAdapter,pullToRefreshView,RefreshTask.Type.REFRESH.ordinal());
+                int before = mAdapter.getCount();
+                refreshTask.execute(before);
+            }
 
-                RefreshTask refreshTask = new RefreshTask(refreshHandler);
-                refreshTask.execute();
-
-
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> listViewPullToRefreshBase) {
+                int before = mAdapter.getCount();
+                RefreshTask refreshTask = new RefreshTask(context,mAdapter,pullToRefreshView,RefreshTask.Type.ADD.ordinal());
+                refreshTask.execute(before);
             }
         });
-        // Add an end-of-list listener
-        pullToRefreshView.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
 
-            @Override
-            public void onLastItemVisible() {
-                Log.i(this.getClass().toString(),"refresh last");
-                RefreshTask refreshTask = new RefreshTask(refreshAddHandler);
-                refreshTask.execute();
-            }
-        });
         return rootView;
     }
 
