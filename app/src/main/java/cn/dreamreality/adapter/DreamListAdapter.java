@@ -19,9 +19,9 @@ import cn.dreamreality.entities.DreamReality;
 public class DreamListAdapter extends BaseAdapter {
 
     private Context mContext;
-    private final ArrayList<DreamReality> dreamsRealities;
+    private ArrayList<DreamReality> dreamsRealities;
 
-    private final LayoutInflater mInflater;
+    private LayoutInflater mInflater;
 
     private DreamHolder dreamHolder;
 
@@ -54,6 +54,25 @@ public class DreamListAdapter extends BaseAdapter {
         return dreamsRealities.get(position);
     }
 
+    public Object getLastItem(){
+
+        if (getCount()>0){
+            return dreamsRealities.get(getCount() -1 );
+        }
+
+        return null;
+    }
+
+    public long getLastItemId(){
+
+        if(null != getLastItem()) {
+            return ((DreamReality) getLastItem()).getId();
+        }
+        return 0l;
+
+    }
+
+
     public long getItemId(int position) {
         return position;
     }
@@ -64,6 +83,7 @@ public class DreamListAdapter extends BaseAdapter {
 
             v = mInflater.inflate(R.layout.list_dream, null);
             dreamHolder.dreamTextView = (TextView)v.findViewById(R.id.dream_text_view);
+            dreamHolder.idTextView = (TextView)v.findViewById(R.id.id_text_view);
 
             v.setTag(dreamHolder);
 
@@ -87,7 +107,8 @@ public class DreamListAdapter extends BaseAdapter {
         }
         dreamHolder.dreamTextView.setText(dreamsRealities.get(position)
                 .getDream());
-
+        dreamHolder.idTextView.setText(String.valueOf(dreamsRealities.get(position)
+                .getId()));
     }
 
     /**
@@ -97,6 +118,7 @@ public class DreamListAdapter extends BaseAdapter {
 
         private TextView dreamTextView;
         private TextView realityTextView;
+        private TextView idTextView;
 
     }
 

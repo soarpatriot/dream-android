@@ -20,9 +20,16 @@
     </RelativeLayout>
 
     <RelativeLayout
-
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/id_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/dream_text_view"
             android:layout_width="wrap_content"
@@ -41,6 +48,8 @@
 
             android:text="踩"
             android:id="@+id/down_btn"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf = "@+id/up_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

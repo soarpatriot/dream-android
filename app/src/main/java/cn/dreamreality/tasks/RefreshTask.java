@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -29,18 +30,19 @@ import cn.dreamreality.utils.Config;
 /**
  * Created by liuhaibao on 15/3/9.
  */
-public class RefreshTask extends AsyncTask<Integer, Void, Boolean>
+public class RefreshTask extends AsyncTask<Void, Void, Boolean>
 {
 
     private Context context;
     private DreamListAdapter dreamAdapter;
     private PullToRefreshListView pullToRefreshView;
-    private ArrayList<DreamReality> dreamLists = new ArrayList<DreamReality>();
+    private ArrayList<DreamReality> dreamLists;
     private int type;
+    private long before;
+
     public enum Type{
         ADD, REFRESH
     }
-
 
     public RefreshTask(Context context, DreamListAdapter dreamAdapter,PullToRefreshListView pullToRefreshView, int type){
         this.context = context;
@@ -48,12 +50,18 @@ public class RefreshTask extends AsyncTask<Integer, Void, Boolean>
         this.pullToRefreshView = pullToRefreshView;
         this.type = type;
     }
+
     @Override
-    protected Boolean doInBackground(Integer... params)
+    protected void onPreExecute(){
+
+        before = dreamAdapter.getLastItemId();
+    }
+    @Override
+    protected Boolean doInBackground(Void...param)
     {
         String dreamUrl = Config.POST_URL;
-        if(params[0] > 0){
-            dreamUrl = dreamUrl + "?before="+ params[0];
+        if(type == Type.ADD.ordinal()){
+            dreamUrl = dreamUrl + "?before="+ before;
         }
         HttpGet getMethod = new HttpGet(dreamUrl);
         try {
@@ -89,6 +97,7 @@ public class RefreshTask extends AsyncTask<Integer, Void, Boolean>
     @Override
     protected void onPostExecute(Boolean result)
     {
+        Log.i(this.getClass().toString(), "result = "+ result); //获取响应码
         if(result){
             if(type == Type.REFRESH.ordinal()){
                 dreamAdapter.setData(dreamLists);
@@ -107,7 +116,7 @@ public class RefreshTask extends AsyncTask<Integer, Void, Boolean>
     private void dealList(int code, String result) throws Exception{
         JSONObject jsonObject = null;
 
-        if ( !(code >= 200 && code < 400) ){
+        if ( code != HttpStatus.SC_OK ){
             try{
                 jsonObject = new JSONObject(result);
                 String message = jsonObject.getString("error");
@@ -119,19 +128,19 @@ public class RefreshTask extends AsyncTask<Integer, Void, Boolean>
 
         }else{
 
-
+            dreamLists = new ArrayList<DreamReality>();
             try{
 
                 jsonObject = new JSONObject(result);
                 JSONArray dreams = jsonObject.getJSONArray("data");
                 int length = dreams.length();
-                String dream = "";
                 for(int i = 0; i < length; i++){//遍历JSONArray
                     DreamReality dreamReality = new DreamReality();
                     JSONObject oj = dreams.getJSONObject(i);
-                    dream = oj.getString("dream");
 
-                    dreamReality.setDream(dream);
+                    dreamReality.setId(oj.getLong("id"));
+                    dreamReality.setReality(oj.getString("reality"));
+                    dreamReality.setDream(oj.getString("dream"));
 
                     dreamLists.add(dreamReality);
 

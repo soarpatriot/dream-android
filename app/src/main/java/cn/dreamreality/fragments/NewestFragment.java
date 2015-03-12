@@ -73,13 +73,13 @@ public class NewestFragment extends Fragment {
         pullToRefreshView = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
         pullToRefreshView.setAdapter(mAdapter);
 
-        final RefreshHandler refreshHandler = new RefreshHandler(rootView.getContext(),pullToRefreshView,mAdapter);
+        //final RefreshHandler refreshHandler = new RefreshHandler(rootView.getContext(),pullToRefreshView,mAdapter);
 
-        final RefreshAddHandler refreshAddHandler = new RefreshAddHandler(rootView.getContext(),pullToRefreshView,mAdapter);
+        //final RefreshAddHandler refreshAddHandler = new RefreshAddHandler(rootView.getContext(),pullToRefreshView,mAdapter);
 
-        int before = mAdapter.getCount();
+
         RefreshTask refreshTask = new RefreshTask(rootView.getContext(),mAdapter,pullToRefreshView,RefreshTask.Type.REFRESH.ordinal());
-        refreshTask.execute(before);
+        refreshTask.execute();
 
         pullToRefreshView.setMode(PullToRefreshBase.Mode.BOTH);
 
@@ -88,15 +88,14 @@ public class NewestFragment extends Fragment {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> listViewPullToRefreshBase) {
                 RefreshTask refreshTask = new RefreshTask(context,mAdapter,pullToRefreshView,RefreshTask.Type.REFRESH.ordinal());
-                int before = mAdapter.getCount();
-                refreshTask.execute(before);
+                refreshTask.execute();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> listViewPullToRefreshBase) {
-                int before = mAdapter.getCount();
+
                 RefreshTask refreshTask = new RefreshTask(context,mAdapter,pullToRefreshView,RefreshTask.Type.ADD.ordinal());
-                refreshTask.execute(before);
+                refreshTask.execute();
             }
         });
 
