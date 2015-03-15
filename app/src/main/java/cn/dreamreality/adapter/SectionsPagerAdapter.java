@@ -1,12 +1,14 @@
 package cn.dreamreality.adapter;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.Locale;
 
+import cn.dreamreality.R;
 import cn.dreamreality.fragments.InformationFragment;
 import cn.dreamreality.fragments.NewestFragment;
 import cn.dreamreality.fragments.UncompletedFragment;
@@ -16,8 +18,10 @@ import cn.dreamreality.fragments.UncompletedFragment;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    private Context context;
+    public SectionsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        this.context = context;
     }
 
     @Override
@@ -49,11 +53,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Locale l = Locale.getDefault();
         switch (position) {
             case 0:
-                return "商品信息".toUpperCase(l);
+                return context.getString(R.string.title_tab_classic);
             case 1:
-                return "吃喝玩乐".toUpperCase(l);
+                return context.getString(R.string.title_tab_newest);
             case 2:
-                return "传奇".toUpperCase(l);
+                return context.getString(R.string.title_tab_uncompleted);
         }
         return null;
     }

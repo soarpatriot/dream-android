@@ -38,7 +38,7 @@
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.yuxian.dreamreality.MainActivity" />
+                android:value="cn.dreamreality.MainActivity" />
         </activity>
         <activity
             android:name=".RegisterActivity"
@@ -46,7 +46,7 @@
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.yuxian.dreamreality.LoginActivity" />
+                android:value="cn.dreamreality.LoginActivity" />
         </activity>
         <activity
             android:name=".DreamActivity"

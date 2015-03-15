@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="PurplePopupMenu" parent="Theme.AppCompat.NoActionBar">
+        <!-- colorPrimary is used, for instance, for the default ActionBar
+             (but not Toolbar) background.
+              We specify the same color for the toolbar background in
+              toolbar.xml.. -->
+        <item name="colorPrimary">@color/white_opaque</item>
+
+        <!-- colorPrimaryDark is used for the status bar (with the
+             battery, clock, etc). -->
+        <item name="colorPrimaryDark">@color/apptheme_color</item>
+
+        <!-- colorAccent is used as the default value for
+             colorControlActivated which is used to tint widgets. -->
+        <item name="colorAccent">@color/white_opaque</item>
+    </style>
+
+    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@color/apptheme_color</item>
+
+        <!-- android:textColorPrimary is the  color of the title text
+             in the Toolbar, in the Theme.AppCompat theme:  -->
+        <item name="android:textColorPrimary">@color/white_opaque</item>
+
+        <!-- android:textColorPrimaryInverse is the  color of the title
+             text in the Toolbar, in the Theme.AppCompat.Light theme:  -->
+        <item name="android:textColorPrimaryInverse">@color/white_opaque</item> -->
+
+        <!-- android:actionMenuTextColor is the color of the text of
+              action (menu) items in the Toolbar, at least in the
+              Theme.AppCompat theme.
+              For some reason, they already get the textColorPrimary
+              when running on API 21, but not on older versions of
+              Android, so this is only necessary to support older
+              Android versions.-->
+        <item name="actionMenuTextColor">@color/apptheme_color</item>
+        <!-- android:textColorSecondary is the color of the menu
+             overflow icon (three vertical dots) -->
+        <item name="android:textColorSecondary">@color/white_opaque</item>
+
+        <!-- This would set the toolbar's background color,
+              but setting this also changes the popup menu's background,
+              even if we define popupTheme for our <Toolbar> -->
+        <!-- <item name="android:background">@color/color_primary</item> -->
+    </style>
+
+
+    <style name="EditTextAppTheme" parent="android:Widget.EditText">
+	  <item name="android:background">@drawable/apptheme_edit_text_holo_light</item>
+	  <item name="android:textColor">#000000</item>
+  </style>
+
+  <style name="AutoCompleteTextViewAppTheme" parent="android:Widget.AutoCompleteTextView">
+      <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+	  <item name="android:background">@drawable/apptheme_edit_text_holo_light</item>
+	  <item name="android:textColor">#000000</item>
+  </style>
+
+  <style name="CheckBoxAppTheme" parent="android:Widget.CompoundButton.CheckBox">
+      <item name="android:button">@drawable/apptheme_btn_check_holo_light</item>
+  </style>
+
+  <style name="RadioButtonAppTheme" parent="android:Widget.CompoundButton.RadioButton">
+      <item name="android:button">@drawable/apptheme_btn_radio_holo_light</item>
+  </style>
+
+  <style name="ButtonAppTheme" parent="android:Widget.Button">
+	  <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+	  <item name="android:minHeight">48dip</item>
+	  <item name="android:minWidth">64dip</item>
+	  <item name="android:textColor">#000000</item>
+  </style>
+
+  <style name="ImageButtonAppTheme" parent="android:Widget.ImageButton">
+	  <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+  </style>
+
+  <style name="SpinnerAppTheme" parent="android:Widget.Spinner">
+      <item name="android:background">@drawable/apptheme_spinner_background_holo_light</item>
+      <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+  </style>
+
+  <style name="SpinnerDropDownItemAppTheme" parent="android:Widget.DropDownItem.Spinner">
+      <item name="android:checkMark">@drawable/apptheme_btn_radio_holo_light</item>
+  </style>
+  <style name="TabAppTheme">
+      <item name="android:gravity">center_horizontal</item>
+      <item name="android:paddingLeft">16dip</item>
+      <item name="android:paddingRight">16dip</item>
+      <item name="android:background">@drawable/apptheme_tab_indicator_holo</item>
+      <item name="android:layout_width">0dip</item>
+      <item name="android:layout_weight">1</item>
+      <item name="android:minWidth">80dip</item>
+  </style>
+
+  <style name="TabTextAppTheme">
+	  <item name="android:textColor">#000000</item>
+      <item name="android:textSize">14sp</item>
+      <item name="android:textStyle">bold</item>
+      <!-- v14 <item name="android:textAllCaps">true</item> -->
+      <item name="android:ellipsize">marquee</item>
+      <item name="android:maxLines">2</item>
+      <item name="android:maxWidth">180dip</item>
+  </style>
+
+  <style name="ProgressBarAppTheme" parent="android:Widget.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/apptheme_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_progress_indeterminate_horizontal_holo_light</item>
+      <item name="android:minHeight">16dip</item>
+      <item name="android:maxHeight">16dip</item>
+  </style>
+
+  <style name="SeekBarAppTheme" parent="android:Widget.SeekBar">
+      <item name="android:progressDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:minHeight">13dip</item>
+      <item name="android:maxHeight">13dip</item>
+      <item name="android:thumb">@drawable/apptheme_scrubber_control_selector_holo_light</item>
+      <item name="android:thumbOffset">16dip</item>
+      <item name="android:paddingLeft">16dip</item>
+      <item name="android:paddingRight">16dip</item>
+  </style>
+
+  <style name="RatingBarAppTheme" parent="android:Widget.RatingBar">
+      <item name="android:progressDrawable">@drawable/apptheme_ratingbar_full_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_ratingbar_full_holo_light</item>
+  </style>
+
+  <style name="RatingBarBigAppTheme" parent="android:Widget.RatingBar">
+      <item name="android:progressDrawable">@drawable/apptheme_ratingbar_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_ratingbar_holo_light</item>
+      <item name="android:minHeight">35dip</item>
+      <item name="android:maxHeight">35dip</item>
+  </style>
+
+  <style name="RatingBarSmallAppTheme" parent="android:Widget.RatingBar">
+      <item name="android:progressDrawable">@drawable/apptheme_ratingbar_small_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_ratingbar_small_holo_light</item>
+      <item name="android:minHeight">16dip</item>
+      <item name="android:maxHeight">16dip</item>
+  </style>
+
+  <style name="ToggleAppTheme" parent="android:Widget.Button.Toggle">
+      <item name="android:background">@drawable/apptheme_btn_toggle_holo_light</item>
+      <item name="android:minHeight">48dip</item>
+	  <item name="android:textColor">#000000</item>
+  </style>
+
+  <style name="ListViewAppTheme" parent="android:Widget.ListView">
+      <item name="android:listSelector">@drawable/apptheme_list_selector_holo_light</item>
+  </style>
+
+  <style name="ListViewAppTheme.White" parent="android:Widget.ListView.White">
+      <item name="android:listSelector">@drawable/apptheme_list_selector_holo_light</item>
+  </style>
+
+  <style name="SpinnerItemAppTheme" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+      <item name="android:textColor">#000000</item>
+  </style>
+
+</resources>

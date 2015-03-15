@@ -2,9 +2,9 @@
     <string name="app_name">梦想照近现实</string>
 
 
-    <string name="title_section1">经典</string>
-    <string name="title_section2">最新</string>
-    <string name="title_section3">已完成</string>
+    <string name="title_tab_classic">经典</string>
+    <string name="title_tab_newest">最新</string>
+    <string name="title_tab_uncompleted">已完成</string>
 
     <string name="hello_world">Hello world!</string>
 

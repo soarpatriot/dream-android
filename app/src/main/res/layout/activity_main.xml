@@ -1,4 +1,30 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            app:theme="@style/PurpleBlueToolbar"
+            app:popupTheme="@style/PurplePopupMenu"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:title="@string/app_name"
+             >
+
+        </android.support.v7.widget.Toolbar>
+        <cn.dreamreality.view.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity" />
+
+</LinearLayout>
