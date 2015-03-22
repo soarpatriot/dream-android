@@ -13,7 +13,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:title="@string/app_name"
-             >
+            >
 
         </android.support.v7.widget.Toolbar>
         <cn.dreamreality.view.SlidingTabLayout

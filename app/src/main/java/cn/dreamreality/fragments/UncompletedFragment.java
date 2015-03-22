@@ -1,15 +1,28 @@
 package cn.dreamreality.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
+import java.util.ArrayList;
 
 import cn.dreamreality.R;
+import cn.dreamreality.adapter.DreamListAdapter;
+import cn.dreamreality.entities.DreamReality;
+import cn.dreamreality.tasks.RefreshDreamTask;
+import cn.dreamreality.tasks.RefreshTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +43,12 @@ public class UncompletedFragment extends Fragment {
     private String mParam2;
 
     //private OnFragmentInteractionListener mListener;
+    private SwipyRefreshLayout mSwipyRefreshLayout;
+    private DreamListAdapter mAdapter;
+    private ListView mUncopmletedListView;
+    private ArrayList<DreamReality> dreamLists  = new ArrayList<DreamReality>();
 
+    private int count = 0;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -56,17 +74,49 @@ public class UncompletedFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        }**/
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_uncompleted, container, false);
+        final View rootView =  inflater.inflate(R.layout.fragment_uncompleted, container, false);
+        final Context context = rootView.getContext();
+
+        mAdapter = new DreamListAdapter(context, dreamLists);
+        mUncopmletedListView = (ListView) rootView.findViewById(R.id.uncompleted_list_view);
+        mUncopmletedListView.setAdapter(mAdapter);
+
+        RefreshDreamTask refreshDreamTask = new RefreshDreamTask(context,null,mAdapter,mUncopmletedListView,RefreshTask.Type.REFRESH.ordinal());
+        refreshDreamTask.execute();
+
+        mSwipyRefreshLayout = (SwipyRefreshLayout) rootView.findViewById(R.id.swipyrefreshlayout);
+        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(SwipyRefreshLayoutDirection direction) {
+
+            Log.d("MainActivity", "Refresh triggered at "
+                    + (direction == SwipyRefreshLayoutDirection.TOP ? "top" : "bottom"));
+                RefreshDreamTask refreshDreamTask;
+                if(direction == SwipyRefreshLayoutDirection.TOP) {
+                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.REFRESH.ordinal());
+                }else {
+                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.ADD.ordinal());
+
+                }
+
+                refreshDreamTask.execute();
+            }
+        });
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

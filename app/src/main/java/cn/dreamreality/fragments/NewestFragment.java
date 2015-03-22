@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.ArrayList;
 
@@ -60,7 +62,12 @@ public class NewestFragment extends Fragment {
     public NewestFragment() {
     }
 
+    /**
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+    }**/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
