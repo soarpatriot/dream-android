@@ -1,6 +1,7 @@
 package cn.dreamreality.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.dreamreality.DetailActivity;
+import cn.dreamreality.DreamActivity;
 import cn.dreamreality.R;
 import cn.dreamreality.entities.DreamReality;
 
@@ -107,6 +110,15 @@ public class DreamListAdapter extends BaseAdapter {
         }
         dreamHolder.dreamTextView.setText(dreamsRealities.get(position)
                 .getDream());
+
+        dreamHolder.dreamTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
         dreamHolder.idTextView.setText(String.valueOf(dreamsRealities.get(position)
                 .getId()));
     }
