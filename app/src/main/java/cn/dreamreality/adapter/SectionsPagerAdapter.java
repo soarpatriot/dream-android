@@ -32,11 +32,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         //Fragment fragment = null;
         switch (position) {
             case 0:
-                return new InformationFragment();
+                return InformationFragment.newInstance(0);
             case 1:
-                return new NewestFragment();
+                return NewestFragment.newInstance(1);
             case 2:
-                return new UncompletedFragment();
+                return UncompletedFragment.newInstance(2);
         }
 
         return null;

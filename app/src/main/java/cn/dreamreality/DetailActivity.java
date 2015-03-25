@@ -1,9 +1,16 @@
 package cn.dreamreality;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import cn.dreamreality.holders.DreamHolder;
+import cn.dreamreality.tasks.FetchDreamTask;
+import cn.dreamreality.tasks.RefreshTask;
 
 
 public class DetailActivity extends ActionBarActivity {
@@ -12,6 +19,21 @@ public class DetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+
+        DreamHolder dreamHolder = new DreamHolder();
+        dreamHolder.setDreamTextView((TextView) findViewById(R.id.dream_text_view));
+        dreamHolder.setRealityTextView((TextView) findViewById(R.id.reality_text_view));
+        dreamHolder.setIdTextView((TextView) findViewById(R.id.id_text_view));
+
+        FetchDreamTask fetchDreamTask = new FetchDreamTask(this.getApplicationContext(),dreamHolder);
+        fetchDreamTask.execute(Long.valueOf(id));
+
     }
 
 
@@ -36,4 +58,5 @@ public class DetailActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

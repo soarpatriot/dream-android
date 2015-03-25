@@ -116,7 +116,14 @@ public class DreamListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("id", dreamHolder.idTextView.getText());
                 mContext.startActivity(intent);
+
+                //Intent intent = new Intent();
+                //Intent传递参数
+                //intent.putExtra("testIntent", "123");
+                //intent.setClass(FirstActivity.this, SecondActivity.class);
+                //FirstActivity.this.startActivity(intent);
             }
         });
         dreamHolder.idTextView.setText(String.valueOf(dreamsRealities.get(position)
