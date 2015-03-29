@@ -48,7 +48,8 @@
                 android:id="@+id/dream_text_view"
                 android:textColor="@color/pitch_black"
                 android:textSize="16dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="60dp"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
