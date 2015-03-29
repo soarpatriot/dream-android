@@ -92,8 +92,8 @@ public class UncompletedFragment extends Fragment {
         mUncopmletedListView = (ListView) rootView.findViewById(R.id.uncompleted_list_view);
         mUncopmletedListView.setAdapter(mAdapter);
 
-        RefreshDreamTask refreshDreamTask = new RefreshDreamTask(context,null,mAdapter,mUncopmletedListView,RefreshTask.Type.REFRESH.ordinal());
-        refreshDreamTask.execute();
+        //RefreshDreamTask refreshDreamTask = new RefreshDreamTask(context,null,mAdapter,mUncopmletedListView,RefreshTask.Type.REFRESH.ordinal());
+        //refreshDreamTask.execute();
 
         mSwipyRefreshLayout = (SwipyRefreshLayout) rootView.findViewById(R.id.swipyrefreshlayout);
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
@@ -104,13 +104,13 @@ public class UncompletedFragment extends Fragment {
                     + (direction == SwipyRefreshLayoutDirection.TOP ? "top" : "bottom"));
                 RefreshDreamTask refreshDreamTask;
                 if(direction == SwipyRefreshLayoutDirection.TOP) {
-                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.REFRESH.ordinal());
+                    //refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.REFRESH.ordinal());
                 }else {
-                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.ADD.ordinal());
+                    //refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, RefreshTask.Type.ADD.ordinal());
 
                 }
 
-                refreshDreamTask.execute();
+                //refreshDreamTask.execute();
             }
         });
 

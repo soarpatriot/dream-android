@@ -3,6 +3,8 @@ package cn.dreamreality.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
 import cn.dreamreality.holders.DreamHolder;
 import cn.dreamreality.utils.Config;
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+import fr.castorflex.android.circularprogressbar.CircularProgressDrawable;
 
 /**
  * Created by liuhaibao on 15/3/25.
@@ -34,19 +38,23 @@ public class FetchDreamTask extends AsyncTask<Long, Void, Boolean> {
 
     private ArrayList<DreamReality> dreamLists;
 
-
+    private DreamReality dreamReality = new DreamReality();
     private DreamHolder dreamHolder;
 
+    private LinearLayout linearLayout;
 
-    public FetchDreamTask(Context context, DreamHolder dreamHolder){
+
+    public FetchDreamTask(Context context, DreamHolder dreamHolder,LinearLayout linearLayout ){
         this.context = context;
         this.dreamHolder = dreamHolder;
+        this.linearLayout = linearLayout;
 
     }
 
     @Override
     protected void onPreExecute(){
-
+        linearLayout.setVisibility(View.VISIBLE);
+        //((CircularProgressDrawable)circularProgressBar.getIndeterminateDrawable()).start();
     }
     @Override
     protected Boolean doInBackground(Long...param)
@@ -89,11 +97,16 @@ public class FetchDreamTask extends AsyncTask<Long, Void, Boolean> {
     {
         Log.i(this.getClass().toString(), "result = "+ result); //获取响应码
         if(result){
+            dreamHolder.getDreamTextView().setText(dreamReality.getDream());
+            dreamHolder.getRealityTextView().setText(dreamReality.getReality());
+            dreamHolder.getIdTextView().setText(String.valueOf(dreamReality.getId()));
 
         }else{
             Toast.makeText(context, "出错了",
                     Toast.LENGTH_SHORT).show();
         }
+        linearLayout.setVisibility(View.GONE);
+        //((CircularProgressDrawable)circularProgressBar.getIndeterminateDrawable()).stop();
 
     }
 
@@ -117,15 +130,15 @@ public class FetchDreamTask extends AsyncTask<Long, Void, Boolean> {
             try{
 
                 jsonObject = new JSONObject(result);
-                DreamReality dreamReality = new DreamReality();
+
 
                 long id = jsonObject.getLong("id");
                 String reality = jsonObject.getString("reality");
                 String dream = jsonObject.getString("dream");
 
-                dreamHolder.getDreamTextView().setText(dream);
-                dreamHolder.getRealityTextView().setText(reality);
-                dreamHolder.getIdTextView().setText(String.valueOf(id));
+                dreamReality.setReality(reality);
+                dreamReality.setDream(dream);
+                dreamReality.setId(id);
 
 
             }catch (Exception e){

@@ -10,6 +10,7 @@
     <item name="windowActionBar">false</item>
     <item name="android:windowNoTitle">true</item>
 
+    <item name="cpbStyle">@style/CircularThemeProgressBar</item>
 
     <item name="toolbarStyle">@style/PurpleBlueToolbar</item>
 
@@ -55,9 +56,6 @@
 
     <item name="android:buttonStyleToggle">@style/ToggleAppTheme</item>
 
-    <item name="android:listViewStyle">@style/ListViewAppTheme</item>
-
-    <item name="android:listViewWhiteStyle">@style/ListViewAppTheme.White</item>
 
     <item name="android:spinnerItemStyle">@style/SpinnerItemAppTheme</item>
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 import cn.dreamreality.DetailActivity;
 import cn.dreamreality.DreamActivity;
+import cn.dreamreality.MainActivity;
 import cn.dreamreality.R;
 import cn.dreamreality.entities.DreamReality;
 
@@ -27,12 +28,14 @@ public class DreamListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
     private DreamHolder dreamHolder;
+    private Intent intent = new Intent();
 
     public DreamListAdapter(Context context, ArrayList<DreamReality> dreams) {
         mContext = context;
         dreamsRealities = dreams;
         mInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        intent.setClass(context,DetailActivity.class);
     }
 
     public void setData(List<DreamReality> list) {
@@ -108,15 +111,21 @@ public class DreamListAdapter extends BaseAdapter {
         if (dreamsRealities == null || dreamsRealities.size() == 0) {
             return;
         }
+
+        final String id = String.valueOf(dreamsRealities.get(position)
+                .getId());
         dreamHolder.dreamTextView.setText(dreamsRealities.get(position)
                 .getDream());
 
+        dreamHolder.idTextView.setText(id);
         dreamHolder.dreamTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailActivity.class);
+
+                intent.putExtra("id", id);
+                //startActivities(intent);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("id", dreamHolder.idTextView.getText());
+                //intent.putExtra("id", id);
                 mContext.startActivity(intent);
 
                 //Intent intent = new Intent();
@@ -126,8 +135,7 @@ public class DreamListAdapter extends BaseAdapter {
                 //FirstActivity.this.startActivity(intent);
             }
         });
-        dreamHolder.idTextView.setText(String.valueOf(dreamsRealities.get(position)
-                .getId()));
+
     }
 
     /**

@@ -1,68 +1,110 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context="cn.dreamreality.DetailActivity">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
-    <android.support.v7.widget.Toolbar
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar"
-        app:theme="@style/PurpleBlueToolbar"
-        app:popupTheme="@style/PurplePopupMenu"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:title="@string/app_name">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dream_text"
-            android:textColor="@color/white_opaque"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true" />
-    </android.support.v7.widget.Toolbar>
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_margin="16dp"
-        android:paddingBottom="@dimen/activity_vertical_margin">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dream_text"
-            android:id="@+id/dream_text"
-            android:textColor="@color/apptheme_color"
-            android:textSize="18dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical|center_horizontal"
+        tools:context="cn.dreamreality.DetailActivity">
 
-        <TextView
-            android:id="@+id/dream_text_view"
+        <android.support.v7.widget.Toolbar
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            app:theme="@style/PurpleBlueToolbar"
+            app:popupTheme="@style/PurplePopupMenu"
+            android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:title="@string/app_name">
 
-        <TextView
-            android:layout_marginTop="10dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dream_text"
+                android:textColor="@color/white_opaque"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true" />
+        </android.support.v7.widget.Toolbar>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@color/pitch_black"
-            android:text="@string/reality_text"
-            android:id="@+id/reality_text"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_margin="16dp"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dream_text"
+                android:id="@+id/dream_text"
+                android:textColor="@color/apptheme_color"
+                android:textSize="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:id="@+id/reality_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/dream_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/id_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="@color/pitch_black"
+                android:text="@string/reality_text"
+                android:id="@+id/reality_text"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/reality_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/progress_layout"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical|center_horizontal">
+
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:gravity="center_vertical|center_horizontal"
+            android:id="@+id/circleProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateOnly="true"
+
+            app:cpb_color="#FFee44"
+            app:cpb_colors="@array/colors"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_sweep_speed="1.0"
+            app:cpb_stroke_width="4dp"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_max_sweep_angle="300"/>
+    </LinearLayout>
+
+</FrameLayout>

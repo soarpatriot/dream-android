@@ -1,8 +1,11 @@
 package cn.dreamreality.tasks;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
 import cn.dreamreality.utils.Config;
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 
 /**
  * Created by liuhaibao on 15/3/9.
@@ -40,15 +44,19 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
     private int type;
     private long before;
 
+    private LinearLayout linearProcessLayout;
+
     public enum Type{
         ADD, REFRESH
     }
 
-    public RefreshDreamTask(Context context,SwipyRefreshLayout mSwipyRefreshLayout, DreamListAdapter dreamAdapter, ListView dreamListView, int type){
+    public RefreshDreamTask(Context context, SwipyRefreshLayout mSwipyRefreshLayout, DreamListAdapter dreamAdapter, ListView dreamListView, LinearLayout linearProcessLayout, int type){
         this.context = context;
+
         this.dreamAdapter = dreamAdapter;
         this.dreamListView = dreamListView;
         this.mSwipyRefreshLayout = mSwipyRefreshLayout;
+        this.linearProcessLayout = linearProcessLayout;
         this.type = type;
     }
 
@@ -56,6 +64,11 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
     protected void onPreExecute(){
 
         before = dreamAdapter.getLastItemId();
+
+        if(null != linearProcessLayout){
+            linearProcessLayout.setVisibility(View.VISIBLE);
+        }
+        //progressBar.setVisibility(View.VISIBLE);
     }
     @Override
     protected Boolean doInBackground(Void...param)
@@ -110,8 +123,13 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
             Toast.makeText(context, "出错了",
                     Toast.LENGTH_SHORT).show();
         }
+        // progressBar.setVisibility(View.GONE);
         if(null != mSwipyRefreshLayout){
             mSwipyRefreshLayout.setRefreshing(false);
+        }
+
+        if(null != linearProcessLayout){
+            linearProcessLayout.setVisibility(View.GONE);
         }
     }
 
