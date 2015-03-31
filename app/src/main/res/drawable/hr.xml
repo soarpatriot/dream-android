@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
-
+<!-- File created by the Android Action Bar Style Generator
+     Copyright (C) 2012 readyState Software Ltd
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -14,9 +14,9 @@
      limitations under the License.
 -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+android:id/background" android:drawable="@drawable/apptheme_rate_star_small_off_holo_light" />
-    <item android:id="@+android:id/secondaryProgress" android:drawable="@drawable/apptheme_rate_star_small_half_holo_light" />
-    <item android:id="@+android:id/progress" android:drawable="@drawable/apptheme_rate_star_small_on_holo_light" />
-</layer-list>
-
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="line">
+    <stroke    android:color="@color/gray"
+        android:dashWidth="8px"
+        android:dashGap="8px" />
+    <size android:height="4dip" />
+</shape>

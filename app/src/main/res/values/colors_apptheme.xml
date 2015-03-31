@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="apptheme_color">#9933cc</color>
-    <color name="white_opaque">#FFFFFFFF</color>
-    <color name="pitch_black">#FF000000</color>
-
-
+    <color name="white_opaque">#ffffffff</color>
+    <color name="liang_white">#e00000</color>
+    <color name="gray">#ffcccccc</color>
+    <color name="snow">#FFFAFA</color>
+    <color name="ivory">#FFFFF0</color>
+    <color name="floralwhite">#FFFAF0</color>
+    <color name="pitch_black">#FF0000</color>
+    <color name="black">#000000</color>
+    <!-- FFFAFA F8F8FF -->
     <integer-array name="colors">
         <item>@color/holo_blue_dark</item>
         <item>@color/holo_yellow_dark</item>

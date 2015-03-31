@@ -1,15 +1,18 @@
 package cn.dreamreality;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.dreamreality.handlers.LoginHandler;
 import cn.dreamreality.runners.LoginRunner;
@@ -22,12 +25,15 @@ public class LoginActivity extends ActionBarActivity {
     EditText password_txt;
     Button sign_in_button;
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        context = this.getApplicationContext();
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,12 +46,18 @@ public class LoginActivity extends ActionBarActivity {
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = username_txt.getText().toString();
-                String password = password_txt.getText().toString();
+                String username = username_txt.getText().toString().trim();
+                String password = password_txt.getText().toString().trim();
 
-                LoginHandler loginHandler = new LoginHandler(v);
-                LoginRunner runner = new LoginRunner(username,password,loginHandler);
-                runner.start();
+                if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(context, R.string.name_or_password_blank,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    LoginHandler loginHandler = new LoginHandler(v);
+                    LoginRunner runner = new LoginRunner(username,password,loginHandler);
+                    runner.start();
+                }
             }
         });
 
