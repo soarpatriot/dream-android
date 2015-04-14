@@ -162,7 +162,11 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
                     dreamReality.setId(oj.getLong("id"));
                     dreamReality.setReality(oj.getString("reality"));
                     dreamReality.setDream(oj.getString("dream"));
-
+                    dreamReality.setAuthorId(oj.getLong("user_id"));
+                    dreamReality.setAuthor(oj.getString("user_name"));
+                    //dreamReality.setPercentage(oj.getInt("percentage"));
+                    dreamReality.setAvatar(oj.getString("user_avatar"));
+                    dreamReality.setVoted(oj.getBoolean("voted"));
                     dreamLists.add(dreamReality);
 
                 }

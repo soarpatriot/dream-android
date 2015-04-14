@@ -11,4 +11,6 @@ public class Config {
 
     public static String POST_URL = API_BASE_URL + "/posts";
 
+    public static String VOTE_POST_URL = API_BASE_URL + "/votes/";
+
 }

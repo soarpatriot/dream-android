@@ -19,6 +19,8 @@
     <string name="no_login_tips">为了梦想，先登陆或注册吧！</string>
     <string name="name_or_password_blank">请输入用户名密码！</string>
 
+    <string name="vote_after_login">请先登陆！</string>
+
     <string name="submit_text">提交</string>
     <string name="dream_text">梦想</string>
     <string name="reality_text">现实</string>

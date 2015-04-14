@@ -12,7 +12,7 @@
 
         <!-- colorPrimaryDark is used for the status bar (with the
              battery, clock, etc). -->
-        <item name="colorPrimaryDark">@color/apptheme_color</item>
+        <item name="colorPrimaryDark">@color/light_blue</item>
 
         <!-- colorAccent is used as the default value for
              colorControlActivated which is used to tint widgets. -->
@@ -20,7 +20,7 @@
     </style>
 
     <style name="PurpleBlueToolbar" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/apptheme_color</item>
+        <item name="android:background">@color/light_blue</item>
 
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
@@ -37,7 +37,7 @@
               when running on API 21, but not on older versions of
               Android, so this is only necessary to support older
               Android versions.-->
-        <item name="actionMenuTextColor">@color/apptheme_color</item>
+        <item name="actionMenuTextColor">@color/white_opaque</item>
         <!-- android:textColorSecondary is the color of the menu
              overflow icon (three vertical dots) -->
         <item name="android:textColorSecondary">@color/white_opaque</item>

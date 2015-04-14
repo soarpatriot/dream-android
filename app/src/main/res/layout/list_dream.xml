@@ -23,6 +23,11 @@
             android:paddingRight="10dp"
 
             android:layout_height="50dp">
+            <TextView
+                android:id="@+id/author_id_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
             <ImageView
                 android:id="@+id/imageView1"
                 android:background="@color/white_opaque"
@@ -66,6 +71,15 @@
                 android:layout_width="match_parent"
                 android:minHeight="60dp"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/reality_text_view"
+                android:textColor="@color/black"
+                android:background="@color/white_opaque"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:minHeight="60dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -127,10 +141,10 @@
             <ImageButton
                 android:maxWidth="20dp"
                 android:maxHeight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@color/white_opaque"
-                android:src="@drawable/thumbsupcccccc32"
+                android:src="@drawable/up"
                 android:text="顶"
                 android:id="@+id/up_btn"
                 android:scaleType="fitXY" />

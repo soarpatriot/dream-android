@@ -9,7 +9,9 @@
     <color name="floralwhite">#FFFAF0</color>
     <color name="pitch_black">#FF0000</color>
     <color name="black">#000000</color>
-    <!-- FFFAFA F8F8FF -->
+    <color name="light_blue">#2fc2ef</color>
+    <color name="light_blue1">#1E90FF</color>
+    <!-- FFFAFA F8F8FF   2881E0   -->
     <integer-array name="colors">
         <item>@color/holo_blue_dark</item>
         <item>@color/holo_yellow_dark</item>
