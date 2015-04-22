@@ -1,5 +1,6 @@
 package cn.dreamreality;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class DetailActivity extends ActionBarActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
         final String id = intent.getStringExtra("id");
@@ -88,6 +90,15 @@ public class DetailActivity extends ActionBarActivity {
                     upDreamTask.execute(id,token);
                 }
 
+            }
+        });
+
+        
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                //What to do on back clicked
             }
         });
     }

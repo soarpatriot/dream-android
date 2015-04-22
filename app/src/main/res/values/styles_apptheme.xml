@@ -3,7 +3,7 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="PurplePopupMenu" parent="Theme.AppCompat.NoActionBar">
+    <style name="PurplePopupMenu" parent="Theme.AppCompat.Light">
         <!-- colorPrimary is used, for instance, for the default ActionBar
              (but not Toolbar) background.
               We specify the same color for the toolbar background in
@@ -19,7 +19,7 @@
         <item name="colorAccent">@color/white_opaque</item>
     </style>
 
-    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.NoActionBar">
+    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.Light">
         <item name="android:background">@color/light_blue</item>
 
         <!-- android:textColorPrimary is the  color of the title text
