@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
 
         //dialog = ProgressDialog.show(this,"",true);
         RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, null, mAdapter, mUncopmletedListView,linearProcessLayout, RefreshTask.Type.REFRESH.ordinal());;
-        //refreshDreamTask.execute();
+        refreshDreamTask.execute();
 
         mSwipyRefreshLayout = (SwipyRefreshLayout) this.findViewById(R.id.swipyrefreshlayout);
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {

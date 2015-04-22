@@ -93,7 +93,7 @@ public class DetailActivity extends ActionBarActivity {
             }
         });
 
-        
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

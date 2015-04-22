@@ -3,7 +3,7 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="PurplePopupMenu" parent="Theme.AppCompat.Light">
+    <style name="PurplePopupMenu" parent="Theme.AppCompat.NoActionBar">
         <!-- colorPrimary is used, for instance, for the default ActionBar
              (but not Toolbar) background.
               We specify the same color for the toolbar background in
@@ -19,7 +19,7 @@
         <item name="colorAccent">@color/white_opaque</item>
     </style>
 
-    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.Light">
+    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@color/light_blue</item>
 
         <!-- android:textColorPrimary is the  color of the title text
@@ -52,7 +52,7 @@
 
 
   <style name="TabTextAppTheme">
-	  <item name="android:textColor">#000000</item>
+	  <item name="android:textColor">@color/white_opaque</item>
       <item name="android:textSize">14sp</item>
       <item name="android:textStyle">bold</item>
       <!-- v14 <item name="android:textAllCaps">true</item> -->
@@ -68,7 +68,7 @@
 
 
   <style name="SpinnerItemAppTheme" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
-      <item name="android:textColor">#000000</item>
+      <item name="android:textColor">@color/light_blue</item>
   </style>
 
     <style name="CircularThemeProgressBar" parent="android:Widget.Holo.ProgressBar">

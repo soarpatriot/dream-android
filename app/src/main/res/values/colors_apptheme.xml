@@ -9,8 +9,11 @@
     <color name="floralwhite">#FFFAF0</color>
     <color name="pitch_black">#FF0000</color>
     <color name="black">#000000</color>
-    <color name="light_blue">#2fc2ef</color>
+    <color name="grey_black">#333333</color>
+    <color name="light_blue">#1893de</color>
     <color name="light_blue1">#1E90FF</color>
+    <color name="purple">#6318DE</color>
+
     <!-- FFFAFA F8F8FF   2881E0   -->
     <integer-array name="colors">
         <item>@color/holo_blue_dark</item>
