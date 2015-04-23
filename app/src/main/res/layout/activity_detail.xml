@@ -156,11 +156,11 @@
             <ImageButton
 
                 android:layout_marginTop="5dp"
-                android:maxWidth="20dp"
-                android:maxHeight="20dp"
+                android:maxWidth="32dp"
+                android:maxHeight="32dp"
                 android:layout_gravity="left"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:background="@color/white_opaque"
                 android:src="@drawable/up"
                 android:text="顶"

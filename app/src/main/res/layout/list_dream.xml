@@ -139,12 +139,12 @@
             android:background="@color/white_opaque"
             android:layout_height="wrap_content">
             <ImageButton
-                android:maxWidth="20dp"
-                android:maxHeight="20dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:maxWidth="32dp"
+                android:maxHeight="32dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:background="@color/white_opaque"
-                android:src="@drawable/up"
+                android:src="@drawable/upempty"
                 android:text="顶"
                 android:id="@+id/up_btn"
                 android:scaleType="fitXY" />
