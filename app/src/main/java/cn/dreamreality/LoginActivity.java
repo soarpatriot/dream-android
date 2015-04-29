@@ -68,6 +68,14 @@ public class LoginActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                //What to do on back clicked
+            }
+        });
     }
 
 

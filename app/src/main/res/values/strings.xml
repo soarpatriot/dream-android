@@ -18,6 +18,7 @@
 
     <string name="no_login_tips">为了梦想，先登陆或注册吧！</string>
     <string name="name_or_password_blank">请输入用户名密码！</string>
+    <string name="dream_or_reality_blank">少年，你还没有填写你的梦想和现实拿！</string>
 
     <string name="vote_after_login">请先登陆！</string>
 
@@ -31,8 +32,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_detail">Detail</string>
 
-
-
+    <string name="button_cancel">取消</string>
+    <string name="button_confirm">确定</string>
+    <string name="back_or_not">请确认</string>
+    <string name="back_no_save">少年，确定要推出写梦想，你所填写的内容将不被保存！</string>
     <!-- Strings related to login -->
     <string name="prompt_email">用户名/邮箱</string>
     <string name="prompt_password">密码</string>
