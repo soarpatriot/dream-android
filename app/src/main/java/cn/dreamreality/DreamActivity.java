@@ -73,8 +73,9 @@ public class DreamActivity extends ActionBarActivity {
                     CustomDialog dialog=new CustomDialog(v.getContext(), R.style.customDialog, R.layout.custom_dialog);
                     dialog.show();
 
-                    /*final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.Dialog);
 
+                    //final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.Dialog);
+                    /**
                     builder.setMessage(R.string.back_no_save)
                             .setTitle(R.string.back_or_not);
 
@@ -91,9 +92,9 @@ public class DreamActivity extends ActionBarActivity {
                             dialog.dismiss();
                         }
                     });
-                    AlertDialog dialog = builder.create();*/
+                    AlertDialog dialog = builder.create();
 
-                    dialog.show();
+                    dialog.show();**/
 
                 }else{
                     onBackPressed();

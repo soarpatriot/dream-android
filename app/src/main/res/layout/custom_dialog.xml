@@ -1,5 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="280dip"
+    android:layout_width="280dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="#EEEEEE" >
@@ -15,37 +15,15 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="45dip"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
-            android:background="#880000"
+            android:background="@color/light_blue"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="自定义Dialog标题"
+            android:text="@string/back_or_not"
             android:textColor="#FFFFFF"
-            android:textSize="20dip" />
+            android:textSize="18dp" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="36dip"
-            android:background="#EEEEEE"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="10dip" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="资源1："
-                android:textColor="@android:color/black"
-                android:textSize="16dip" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="锤子"
-                android:textColor="@android:color/black"
-                android:textSize="16dip" />
-        </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"
@@ -54,53 +32,60 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="36dip"
+            android:layout_height="wrap_content"
             android:background="#EEEEEE"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="10dip" >
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="资源2："
+                android:background="#EEEEEE"
+                android:text="@string/back_no_save"
                 android:textColor="@android:color/black"
-                android:textSize="16dip" />
+                android:textSize="16dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="毛线"
-                android:textColor="@android:color/black"
-                android:textSize="16dip" />
+
         </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="1dip"
+            android:layout_height="1dp"
             android:background="#C0C0C0" />
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="36dip"
+            android:layout_height="wrap_content"
             android:background="#EEEEEE"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="10dip" >
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="资源3："
-                android:textColor="@android:color/black"
-                android:textSize="16dip" />
-
-            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/white_opaque"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:text="取消"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="球"
-                android:textColor="@android:color/black"
-                android:textSize="16dip" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16dp"
+                android:background="@color/pocket_color_3"
+                android:layout_weight="1"
+                android:text="确定"/>
+
         </LinearLayout>
     </LinearLayout>
 
