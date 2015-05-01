@@ -20,7 +20,7 @@
             android:id="@+id/toolbar"
             app:theme="@style/PurpleBlueToolbar"
             app:popupTheme="@style/PurplePopupMenu"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:title="@string/app_name">
 

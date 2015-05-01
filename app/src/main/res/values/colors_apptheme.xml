@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="apptheme_color">#9933cc</color>
+    <color name="apptheme_color">@color/light_blue</color>
     <color name="white_opaque">#ffffffff</color>
     <color name="liang_white">#e00000</color>
     <color name="gray">#ffcccccc</color>

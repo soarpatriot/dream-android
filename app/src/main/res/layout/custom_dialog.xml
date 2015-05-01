@@ -82,7 +82,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16dp"
-                android:background="@color/pocket_color_3"
+                android:background="@drawable/button_bg"
                 android:layout_weight="1"
                 android:text="确定"/>
 

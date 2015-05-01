@@ -9,7 +9,7 @@
   @android:style/Theme.Holo.Light
   Theme.AppCompat.Light
   -->
-  <style name="_AppTheme" parent="Theme.AppCompat.Light">
+  <style name="_AppTheme" parent="android:Theme.Holo.Light">
 
     <item name="windowActionBar">false</item>
     <item name="android:windowNoTitle">true</item>
@@ -31,23 +31,19 @@
     <item name="editTextColor">?android:attr/textColorPrimary</item>
      -->
 
+      <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
 
+      <item name="android:textColorHighlight">#991893de</item>
+      <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
+      <item name="android:textSelectHandleRight">@drawable/apptheme_text_select_handle_right</item>
+      <item name="android:textSelectHandle">@drawable/apptheme_text_select_handle_middle</item>
+
+      <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+
+      <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
 
     <item name="android:spinnerItemStyle">@style/SpinnerItemAppTheme</item>
 
   </style>
-  <style name="Dialog" parent="@android:style/Theme.Holo.Dialog">
 
-      <item name="android:windowFrame">@null</item>
-      <item name="android:windowNoTitle">true</item>
-      <item name="android:windowIsFloating">true</item>
-      <item name="android:windowContentOverlay">@null</item>
-  </style>
-
-    <style name="customDialog" parent="android:style/Theme.Holo.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
 </resources>
