@@ -174,6 +174,13 @@ public class MainActivity extends ActionBarActivity {
                 intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_verify:
+
+                intent = new Intent(this, VerifyCodeActivity.class);
+                intent.putExtra("mobile","18603331140");
+                startActivity(intent);
+                return true;
+
             default:
 
                 return super.onOptionsItemSelected(item);

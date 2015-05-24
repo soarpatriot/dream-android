@@ -5,10 +5,10 @@
         android:startColor="@color/pocket_color_4"
         android:endColor="@color/holo_yellow_dark"
         />
-    <!-- this is make corners of button rounded -->
+    <!-- this is make corners of button rounded
     <corners    android:topLeftRadius="5dp"
         android:bottomRightRadius="5dp"
         android:topRightRadius="5dp"
         android:bottomLeftRadius="5dp"/>
-
+     -->
 </shape>

@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -63,6 +64,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cn.dreamreality.MainActivity" />
+        </activity>
+        <activity
+            android:name=".VerifyCodeActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.dreamreality.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NicknameActivity"
+            android:label="@string/title_activity_nickname" >
         </activity>
     </application>
 

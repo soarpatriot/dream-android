@@ -14,6 +14,7 @@
     <string name="action_settings">个人设置</string>
     <string name="title_activity_login">登陆</string>
     <string name="title_activity_register">注册</string>
+
     <string name="title_activity_dream">写下我的梦想</string>
 
     <string name="no_login_tips">为了梦想，先登陆或注册吧！</string>
@@ -35,11 +36,26 @@
     <string name="button_cancel">取消</string>
     <string name="button_confirm">确定</string>
     <string name="back_or_not">请确认</string>
+    <string name="next">下一步</string>
     <string name="back_no_save">少年，确定要推出写梦想，你所填写的内容将不被保存！</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">用户名/邮箱</string>
+    <string name="prompt_name">用户名</string>
+    <string name="prompt_mobile">手机号码</string>
+    <string name="mobile_password_blank">手机号码或密码不能为空！</string>
+    <string name="verify_code_blank">验证码不能为空！</string>
+    <string name="verify_code_error">验证码错误，请输入正确验证码！</string>
+
+    <string name="mobile_number_format_error">请输入正确的手机号码！</string>
+    <string name="verify_code_system_error">对不起，手机验证码发送失败，请稍后再试！</string>
     <string name="prompt_password">密码</string>
+    <string name="prompt_password_confirm">密码确认</string>
+    <string name="register_verify_code">注册验证码</string>
+    <string name="verify_code">验证码</string>
+    <string name="nick_name">昵称</string>
+    <string name="send_verify_code">发送验证码</string>
+    <string name="resend_verify_code">重新发送</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">登陆</string>
+    <string name="title_activity_nickname">NicknameActivity</string>
 
 </resources>

@@ -36,7 +36,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:hint="@string/prompt_email"
+                android:hint="@string/prompt_mobile"
                 android:singleLine="true"/>
 
 

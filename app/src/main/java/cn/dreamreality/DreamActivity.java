@@ -69,13 +69,23 @@ public class DreamActivity extends ActionBarActivity {
                 if(!TextUtils.isEmpty(dream_text) || !TextUtils.isEmpty(reality_text)) {
 
                     LayoutInflater inflater = getLayoutInflater();
-                    //View layout = inflater.inflate(R.layout.dialog_back_write,(ViewGroup) findViewById(R.id.dialog));
-                    CustomDialog dialog=new CustomDialog(v.getContext(), R.style.customDialog, R.layout.custom_dialog);
+                    View layout = inflater.inflate(R.layout.custom_dialog,null);
+                    Button cancelButton = (Button)layout.findViewById(R.id.cancel_button);
+                    //cancelButton
+
+                    final CustomDialog dialog = new CustomDialog(v.getContext(), R.style.customDialog, R.layout.custom_dialog);
+                    //Button cancelButton = (Button)dialog.findViewById(R.id.cancel_button);
+                    cancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
                     dialog.show();
 
 
-                    //final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.Dialog);
-                    /**
+                    /*final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.Dialog);
+
                     builder.setMessage(R.string.back_no_save)
                             .setTitle(R.string.back_or_not);
 
@@ -92,10 +102,12 @@ public class DreamActivity extends ActionBarActivity {
                             dialog.dismiss();
                         }
                     });
+
                     AlertDialog dialog = builder.create();
 
-                    dialog.show();**/
 
+                    dialog.show();
+*/
                 }else{
                     onBackPressed();
                 }
