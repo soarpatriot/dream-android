@@ -42,14 +42,14 @@ public class RegisterTask extends AsyncTask<String, Void, Boolean> {
 
         String mobile = param[0];
         String nickname = param[1];
-        String password = param[3];
+        String password = param[2];
 
         boolean optResult = true;
 
         List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
 
-        params.add(new BasicNameValuePair("mobile", mobile));
-        params.add(new BasicNameValuePair("nickname", nickname));
+        params.add(new BasicNameValuePair("mobile_number", mobile));
+        params.add(new BasicNameValuePair("name", nickname));
         params.add(new BasicNameValuePair("password", password));
 
 

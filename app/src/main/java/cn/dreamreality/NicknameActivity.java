@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.dreamreality.tasks.RegisterTask;
 
@@ -56,11 +57,14 @@ public class NicknameActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String nickname = nickNameText.getText().toString().trim();
                 if(TextUtils.isEmpty(nickname)){
+                    Toast.makeText(v.getContext(), R.string.nick_name_blank,
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    RegisterTask registerTask = new RegisterTask(v.getContext());
 
+                    registerTask.execute(mobile,nickname,password);
                 }
-                RegisterTask registerTask = new RegisterTask(v.getContext());
 
-                registerTask.execute(mobile,nickname,password);
 
             }
         });

@@ -62,6 +62,7 @@ public class VerifyCodeActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         final String mobile = intent.getStringExtra("mobile");
+        final String password = intent.getStringExtra("password");
 
         mobileText.setText(mobile);
 
@@ -110,7 +111,7 @@ public class VerifyCodeActivity extends ActionBarActivity {
              public void onClick(View v) {
                  final Intent intent = null;
                  final View view = v;
-                 String mobile = mobileText.getText().toString().trim();
+                 final String mobile = mobileText.getText().toString().trim();
                  String verifyCode = verifyCodeText.getText().toString().trim();
                  if(TextUtils.isEmpty(verifyCode) ){
                      Toast.makeText(v.getContext(), R.string.verify_code_blank,
@@ -126,6 +127,11 @@ public class VerifyCodeActivity extends ActionBarActivity {
                          if(e == null){
                              System.out.println("sdfsdf");
                              Log.i("","sdfasdf");
+                             Intent intent = new Intent(view.getContext(), NicknameActivity.class);
+                             intent.putExtra("mobile",mobile);
+                             intent.putExtra("password",password);
+                             startActivity(intent);
+
                          }else{
                              e.printStackTrace();
                              Toast.makeText(view.getContext(), R.string.verify_code_error,

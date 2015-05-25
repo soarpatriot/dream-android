@@ -46,6 +46,7 @@
     <string name="verify_code_error">验证码错误，请输入正确验证码！</string>
 
     <string name="mobile_number_format_error">请输入正确的手机号码！</string>
+    <string name="nick_name_blank">昵称不能为空！</string>
     <string name="verify_code_system_error">对不起，手机验证码发送失败，请稍后再试！</string>
     <string name="prompt_password">密码</string>
     <string name="prompt_password_confirm">密码确认</string>

@@ -178,6 +178,7 @@ public class MainActivity extends ActionBarActivity {
 
                 intent = new Intent(this, VerifyCodeActivity.class);
                 intent.putExtra("mobile","18603331140");
+                intent.putExtra("password","22143521");
                 startActivity(intent);
                 return true;
 
