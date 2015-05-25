@@ -24,6 +24,7 @@ import java.util.List;
 import cn.dreamreality.MainActivity;
 import cn.dreamreality.VerifyCodeActivity;
 import cn.dreamreality.utils.Config;
+import cn.dreamreality.utils.SettingsUtils;
 
 /**
  * Created by liuhaibao on 15/5/24.
@@ -32,6 +33,9 @@ public class RegisterTask extends AsyncTask<String, Void, Boolean> {
 
     private String message = "";
     private Context context;
+    private String token;
+    private String mobileNumber;
+    private String name;
 
     public RegisterTask(Context context){
         this.context = context;
@@ -74,6 +78,13 @@ public class RegisterTask extends AsyncTask<String, Void, Boolean> {
             if (!String.valueOf(statusCode).startsWith("20") && !String.valueOf(statusCode).startsWith("30")) {
                 message = result.getString("error");
                 optResult = false;
+            }else {
+
+                token = result.getString("token");
+                mobileNumber = result.getString("mobile_number");
+                name = result.getString("name");
+
+
             }
 
 
@@ -96,6 +107,9 @@ public class RegisterTask extends AsyncTask<String, Void, Boolean> {
         Log.i(this.getClass().toString(), "result = "+ result); //获取响应码
         if(result){
 
+            SettingsUtils.putSettings(context, "token", token);
+            SettingsUtils.putSettings(context, "mobileNumber", mobileNumber);
+            SettingsUtils.putSettings(context, "name", name);
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
 

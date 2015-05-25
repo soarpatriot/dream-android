@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
     private Context context;
 
     private LinearLayout linearProcessLayout = null;
+    private Menu menu;
 
 
     @Override
@@ -68,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this.getApplicationContext();
-
+        //menu = (Menu)findViewById(R.menu.menu_main);
 
         linearProcessLayout = (LinearLayout) findViewById(R.id.progress_layout);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -82,6 +83,7 @@ public class MainActivity extends ActionBarActivity {
         // Set up the action bar.
 
         final ActionBar actionBar = getSupportActionBar();
+
 
         mAdapter = new DreamListAdapter(context, dreamLists);
         mUncopmletedListView = (ListView) this.findViewById(R.id.uncompleted_list_view);
@@ -136,7 +138,19 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        String token =  SettingsUtils.getSettings(this, "token");
+        if(!TextUtils.isEmpty(token)){
+
+            MenuItem itemLogin = (MenuItem) menu.findItem(R.id.action_login);
+            MenuItem itemRegister = (MenuItem) menu.findItem(R.id.action_register);
+            itemLogin.setVisible(false);
+            itemRegister.setVisible(false);
+            this.invalidateOptionsMenu();
+        }
+
         return true;
     }
 
