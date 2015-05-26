@@ -43,7 +43,7 @@ public class LoginRunner extends Thread {
 
 
         List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
-        params.add(new BasicNameValuePair("name", this.getUsername()));
+        params.add(new BasicNameValuePair("mobile_number", this.getUsername()));
         params.add(new BasicNameValuePair("password", this.getPassword()));
 
 

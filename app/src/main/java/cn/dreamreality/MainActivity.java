@@ -142,12 +142,17 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         String token =  SettingsUtils.getSettings(this, "token");
+        MenuItem itemLogin = (MenuItem) menu.findItem(R.id.action_login);
+        MenuItem itemRegister = (MenuItem) menu.findItem(R.id.action_register);
+        MenuItem itemLoginOut = (MenuItem) menu.findItem(R.id.action_login_out);
         if(!TextUtils.isEmpty(token)){
 
-            MenuItem itemLogin = (MenuItem) menu.findItem(R.id.action_login);
-            MenuItem itemRegister = (MenuItem) menu.findItem(R.id.action_register);
+
             itemLogin.setVisible(false);
             itemRegister.setVisible(false);
+            this.invalidateOptionsMenu();
+        }else{
+            itemLoginOut.setVisible(false);
             this.invalidateOptionsMenu();
         }
 
@@ -195,7 +200,10 @@ public class MainActivity extends ActionBarActivity {
                 intent.putExtra("password","22143521");
                 startActivity(intent);
                 return true;
+            case R.id.action_login_out:
+                SettingsUtils.removeString(this.getApplicationContext(), "token");
 
+                return true;
             default:
 
                 return super.onOptionsItemSelected(item);

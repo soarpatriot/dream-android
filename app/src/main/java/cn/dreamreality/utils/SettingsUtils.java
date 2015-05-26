@@ -25,6 +25,12 @@ public class SettingsUtils {
         editor.commit();
     }
 
+    public static void removeString(Context context,String key){
+        SharedPreferences settings = getPreferences(context);
+
+        settings.edit().remove(key).commit();
+    }
+
     private static SharedPreferences getPreferences(Context context){
         return context.getSharedPreferences(SETTINGS, 0);
     }
