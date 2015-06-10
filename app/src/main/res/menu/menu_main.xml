@@ -12,8 +12,8 @@
         android:orderInCategory="96" app:showAsAction="never" />
     <item android:id="@+id/action_verify" android:title="@string/verify_code"
         android:orderInCategory="96" app:showAsAction="never" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+
     <item android:id="@+id/action_login_out" android:title="@string/action_login_out"
         android:orderInCategory="96" app:showAsAction="never" />
 </menu>

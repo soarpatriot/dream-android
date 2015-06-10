@@ -7,8 +7,8 @@
     <android.support.v7.widget.Toolbar
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
-        app:theme="@style/PurpleBlueToolbar"
-        app:popupTheme="@style/PurplePopupMenu"
+        app:theme="@style/BlueToolbar"
+        app:popupTheme="@style/BluePopupMenu"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:title="@string/action_dream"

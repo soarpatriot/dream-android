@@ -13,15 +13,51 @@
             <android.support.v7.widget.Toolbar
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
-                app:theme="@style/PurpleBlueToolbar"
-                app:popupTheme="@style/PurplePopupMenu"
+
+                app:theme="@style/BlueToolbar"
+                app:popupTheme="@style/BluePopupMenu"
+
                 android:layout_height="wrap_content"
+                
                 android:layout_width="match_parent"
                 android:title="@string/app_name"
+
+
                 >
+
+                <!--
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置"
+                    android:onClick="showSettings"
+                    android:id="@+id/setting_btn" />
+                -->
 
             </android.support.v7.widget.Toolbar>
 
+
+            <in.srain.cube.views.ptr.PtrFrameLayout
+                android:id="@+id/dream_ptr_frame"
+                xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                cube_ptr:ptr_resistance="1.7"
+                cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+                cube_ptr:ptr_duration_to_close="300"
+                cube_ptr:ptr_duration_to_close_header="2000"
+                cube_ptr:ptr_keep_header_when_refresh="true"
+                cube_ptr:ptr_pull_to_fresh="false" >
+
+                <ListView
+                    android:id="@+id/uncompleted_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </in.srain.cube.views.ptr.PtrFrameLayout>
+
+        <!--
             <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/swipyrefreshlayout"
@@ -37,7 +73,7 @@
             </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 
-            <!--
+
 
                     <cn.dreamreality.view.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
@@ -50,6 +86,7 @@
                 android:layout_height="match_parent"
                 tools:context=".MainActivity" />
             -->
+
 
 
     </LinearLayout>

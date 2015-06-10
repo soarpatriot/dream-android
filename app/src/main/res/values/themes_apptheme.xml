@@ -8,15 +8,34 @@
   <!--
   @android:style/Theme.Holo.Light
   Theme.AppCompat.Light
+
+
+  android:Theme.Holo.Light
   -->
-  <style name="_AppTheme" parent="android:Theme.Holo.Light">
 
-    <item name="windowActionBar">false</item>
+
+  <style name="_AppTheme" parent="Theme.AppCompat.Light">
+
+    <!--
+        <item name="windowActionBar">false</item>
     <item name="android:windowNoTitle">true</item>
+    <item name="toolbarStyle">@style/BlueToolbar</item>
+    -->
 
+
+      <item name="colorPrimary">@color/light_blue</item>
+      <item name="colorPrimaryDark">@color/light_blue</item>
+      <item name="colorAccent">@color/light_blue</item>
+      <item name="android:textColorPrimary">@color/grey_black</item>
+      <item name="android:textColorSecondary">@color/light_blue</item>
+
+      <item name="windowActionBar">false</item>
+      <item name="android:windowNoTitle">true</item>
     <item name="cpbStyle">@style/CircularThemeProgressBar</item>
 
-    <item name="toolbarStyle">@style/PurpleBlueToolbar</item>
+
+
+
 
       <!-- This would set the toolbar's background color,
             but setting this also changes the popup menu's background,
@@ -29,21 +48,14 @@
     <item name="toolbarNavigationButtonStyle">@style/Widget.AppCompat.Toolbar.Button.Navigation</item>
     <item name="editTextBackground">@drawable/abc_edit_text_material</item>
     <item name="editTextColor">?android:attr/textColorPrimary</item>
-     -->
 
-      <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
 
-      <item name="android:textColorHighlight">#991893de</item>
-      <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
-      <item name="android:textSelectHandleRight">@drawable/apptheme_text_select_handle_right</item>
-      <item name="android:textSelectHandle">@drawable/apptheme_text_select_handle_middle</item>
 
-      <item name="android:buttonStyle">@style/ButtonAppTheme</item>
 
-      <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
 
+    <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
     <item name="android:spinnerItemStyle">@style/SpinnerItemAppTheme</item>
-
+  -->
   </style>
 
 </resources>

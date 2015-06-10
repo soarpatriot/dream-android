@@ -73,7 +73,7 @@ public class DreamActivity extends ActionBarActivity {
                     Button cancelButton = (Button)layout.findViewById(R.id.cancel_button);
                     //cancelButton
 
-                    final CustomDialog dialog = new CustomDialog(v.getContext(), R.style.customDialog, R.layout.custom_dialog);
+                    final CustomDialog dialog = null; //new CustomDialog(v.getContext(), R.style.customDialog, R.layout.custom_dialog);
                     //Button cancelButton = (Button)dialog.findViewById(R.id.cancel_button);
                     cancelButton.setOnClickListener(new View.OnClickListener() {
                         @Override

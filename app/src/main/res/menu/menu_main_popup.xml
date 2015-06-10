@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content" >
+
+    <item android:id="@+id/action1" android:title="@string/action_dream" android:layout_height="wrap_content"/>
+    <item android:id="@+id/action2" android:title="@string/action_dream" android:layout_height="wrap_content"/>
+    <item android:id="@+id/action3" android:title="@string/action_dream" android:layout_height="wrap_content"/>
+    <item android:id="@+id/action4" android:title="@string/action_dream" android:layout_height="wrap_content"/>
+    <item android:id="@+id/action5" android:title="@string/action_dream" android:layout_height="wrap_content"/>
+
+</menu>

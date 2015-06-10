@@ -114,7 +114,7 @@ public class VerifyCodeActivity extends ActionBarActivity {
                  final String mobile = mobileText.getText().toString().trim();
                  String verifyCode = verifyCodeText.getText().toString().trim();
                  if(TextUtils.isEmpty(verifyCode) ){
-                     Toast.makeText(v.getContext(), R.string.verify_code_blank,
+                     Toast.makeText(v.getContext().getApplicationContext(), R.string.verify_code_blank,
                              Toast.LENGTH_SHORT).show();
                      return;
                  }

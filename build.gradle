@@ -10,6 +10,8 @@ buildscript {
         classpath 'com.navercorp.pulltorefresh:library:3.2.0'
         classpath 'com.github.orangegangsters:swipy:1.2.0@aar'
 
+        //classpath 'com.android.support:design:22.2.0'
+        //classpath 'com.android.support:appcompat-v7:21.0.3'
         classpath 'com.github.castorflex.smoothprogressbar:library:1.1.0@aar'
         classpath 'com.github.castorflex.smoothprogressbar:library-circular:1.1.0@aar'
         // NOTE: Do not place your application dependencies here; they belong

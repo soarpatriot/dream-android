@@ -3,36 +3,33 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="ButtonAppTheme" parent="android:Widget.Holo.Light.Button">
-        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+
+
+    <style name="BluePopupMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">@color/gray</item>
+
+        <!-- android:textColorPrimary is the  color of the title text
+             in the Toolbar, in the Theme.AppCompat theme:  -->
+        <item name="android:textColorPrimary">@color/grey_black</item>
     </style>
 
-    <style name="ImageButtonAppTheme" parent="android:Widget.Holo.Light.ImageButton">
-        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
-    </style>
-    <style name="PurplePopupMenu" parent="Theme.AppCompat.NoActionBar">
-        <!-- colorPrimary is used, for instance, for the default ActionBar
-             (but not Toolbar) background.
-              We specify the same color for the toolbar background in
-              toolbar.xml.. -->
-        <item name="colorPrimary">@color/white_opaque</item>
 
-        <!-- colorPrimaryDark is used for the status bar (with the
-             battery, clock, etc). -->
-        <item name="colorPrimaryDark">@color/light_blue</item>
+    <!-- OverFlow menu Styles
+    <style name="PopupMenuListView" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
 
-        <!-- colorAccent is used as the default value for
-             colorControlActivated which is used to tint widgets. -->
-        <item name="colorAccent">@color/white_opaque</item>
-    </style>
 
-    <style name="PurpleBlueToolbar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@color/grey_black</item>
+    </style>-->
+
+    <style name="BlueToolbar" parent="ThemeOverlay.AppCompat.Dark">
+
+
         <item name="android:background">@color/light_blue</item>
 
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/white_opaque</item>
-
+        <item name="colorPrimaryDark">@color/light_blue</item>
         <!-- android:textColorPrimaryInverse is the  color of the title
              text in the Toolbar, in the Theme.AppCompat.Light theme:  -->
         <item name="android:textColorPrimaryInverse">@color/white_opaque</item> -->
@@ -56,33 +53,6 @@
     </style>
 
 
-
-
-  <style name="TabTextAppTheme">
-	  <item name="android:textColor">@color/white_opaque</item>
-      <item name="android:textSize">14sp</item>
-      <item name="android:textStyle">bold</item>
-      <!-- v14 <item name="android:textAllCaps">true</item> -->
-      <item name="android:ellipsize">marquee</item>
-      <item name="android:maxLines">2</item>
-      <item name="android:maxWidth">180dip</item>
-  </style>
-
-
-    <style name="Dialog" parent="@android:style/Theme.Holo.Dialog">
-
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="customDialog" parent="android:style/Theme.Holo.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
 
 
 

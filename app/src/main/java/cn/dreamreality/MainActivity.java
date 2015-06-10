@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,6 +36,9 @@ import cn.dreamreality.tasks.RefreshTask;
 import cn.dreamreality.utils.SettingsUtils;
 import cn.dreamreality.view.SlidingTabLayout;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -61,9 +65,13 @@ public class MainActivity extends ActionBarActivity {
     private Context context;
 
     private LinearLayout linearProcessLayout = null;
+    private PtrFrameLayout ptrFrame;
+
+
+
     private Menu menu;
 
-
+    private PopupMenu popupMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +92,7 @@ public class MainActivity extends ActionBarActivity {
 
         final ActionBar actionBar = getSupportActionBar();
 
+        ptrFrame = (PtrFrameLayout) this.findViewById(R.id.dream_ptr_frame);
 
         mAdapter = new DreamListAdapter(context, dreamLists);
         mUncopmletedListView = (ListView) this.findViewById(R.id.uncompleted_list_view);
@@ -93,6 +102,26 @@ public class MainActivity extends ActionBarActivity {
         RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, null, mAdapter, mUncopmletedListView,linearProcessLayout, RefreshTask.Type.REFRESH.ordinal());;
         refreshDreamTask.execute();
 
+
+        ptrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrFrame.refreshComplete();
+                    }
+                }, 1800);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return true;
+                //return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+
+       /**
         mSwipyRefreshLayout = (SwipyRefreshLayout) this.findViewById(R.id.swipyrefreshlayout);
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -110,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
 
                 refreshDreamTask.execute();
             }
-        });
+        });**/
 
 
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -139,12 +168,24 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         this.menu = menu;
+
+
+        //popupMenu.show();
+
+
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         String token =  SettingsUtils.getSettings(this, "token");
         MenuItem itemLogin = (MenuItem) menu.findItem(R.id.action_login);
         MenuItem itemRegister = (MenuItem) menu.findItem(R.id.action_register);
         MenuItem itemLoginOut = (MenuItem) menu.findItem(R.id.action_login_out);
+        //MenuItem itemSettings = (MenuItem) menu.findItem(R.id.action_settings);
+
+        //View menuItemView = findViewById(R.id.action_settings);
+        //popupMenu = new PopupMenu(this, menuItemView);
+        //popupMenu.inflate(R.menu.menu_main_popup);
+
         if(!TextUtils.isEmpty(token)){
 
 
@@ -156,6 +197,8 @@ public class MainActivity extends ActionBarActivity {
             this.invalidateOptionsMenu();
         }
 
+
+
         return true;
     }
 
@@ -164,6 +207,7 @@ public class MainActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         Intent intent = null;
         switch (id ) {
@@ -204,11 +248,17 @@ public class MainActivity extends ActionBarActivity {
                 SettingsUtils.removeString(this.getApplicationContext(), "token");
 
                 return true;
+            case R.id.action_settings:
+                //popupMenu.show();
+                //showSettings(item.getActionView());
+
             default:
 
                 return super.onOptionsItemSelected(item);
 
         }
+
+
 
         //noinspection SimplifiableIfStaØtement
         /**
@@ -218,7 +268,18 @@ public class MainActivity extends ActionBarActivity {
         **/
     }
 
+    public void showSettings(View v){
+        PopupMenu popup = new PopupMenu(this, v);
+        //Inflating the Popup using xml file
+        //popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.menu_main_popup);
 
+        //registering popup with OnMenuItemClickListener
+
+
+        popup.show(); //showing popup menu
+
+    }
     /***
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
