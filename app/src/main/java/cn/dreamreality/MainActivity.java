@@ -37,9 +37,11 @@ import cn.dreamreality.tasks.RefreshTask;
 import cn.dreamreality.utils.SettingsUtils;
 import cn.dreamreality.view.SlidingTabLayout;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -66,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
     private Context context;
 
     private LinearLayout linearProcessLayout = null;
-    private PtrFrameLayout ptrFrame;
+    private PtrClassicFrameLayout ptrFrame;
 
 
 
@@ -93,8 +95,17 @@ public class MainActivity extends ActionBarActivity {
 
         final ActionBar actionBar = getSupportActionBar();
 
-        //ptrFrame = (PtrFrameLayout) this.findViewById(R.id.dream_ptr_frame);
 
+        // header
+        //final StoreHouseHeader header = new StoreHouseHeader(context);
+        //header.initWithStringArray(R.array.storehouse);
+        //header.setPadding(0, LocalDisplay.dp2px(15), 0, 0);
+
+        //header.initWithString("梦想照近显示");
+        // header
+        //final StoreHouseHeader header = (StoreHouseHeader)this.findViewById(R.id.store_house_ptr_image_content);
+        ptrFrame = (PtrClassicFrameLayout) this.findViewById(R.id.dream_ptr_frame);
+        //ptrFrame.setHeaderView(header);
         mAdapter = new DreamListAdapter(context, dreamLists);
         mUncopmletedListView = (ListView) this.findViewById(R.id.uncompleted_list_view);
         mUncopmletedListView.setAdapter(mAdapter);
@@ -103,44 +114,31 @@ public class MainActivity extends ActionBarActivity {
         RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, null, mAdapter, mUncopmletedListView,linearProcessLayout, RefreshTask.Type.REFRESH.ordinal());;
         refreshDreamTask.execute();
 
-        /**
+
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
+
+                RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, frame, mAdapter, mUncopmletedListView,null, RefreshTask.Type.REFRESH.ordinal());;
+                refreshDreamTask.execute();
+
+                /**
                 frame.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         ptrFrame.refreshComplete();
                     }
-                }, 1800);
+                }, 1800);**/
             }
 
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return true;
-                //return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-            }
-        });*/
-
-
-        mSwipyRefreshLayout = (SwipyRefreshLayout) this.findViewById(R.id.swipyrefreshlayout);
-        mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh(SwipyRefreshLayoutDirection direction) {
-
-                Log.d("MainActivity", "Refresh triggered at "
-                        + (direction == SwipyRefreshLayoutDirection.TOP ? "top" : "bottom"));
-                RefreshDreamTask refreshDreamTask;
-                if(direction == SwipyRefreshLayoutDirection.TOP) {
-                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView, null, RefreshTask.Type.REFRESH.ordinal());
-                }else {
-                    refreshDreamTask = new RefreshDreamTask(context, mSwipyRefreshLayout, mAdapter, mUncopmletedListView,null, RefreshTask.Type.ADD.ordinal());
-
-                }
-
-                refreshDreamTask.execute();
+                //return true;
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
+
+
 
 
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

@@ -28,6 +28,7 @@ import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
 import cn.dreamreality.utils.Config;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * Created by liuhaibao on 15/3/9.
@@ -40,7 +41,7 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
     private ListView dreamListView;
     private ArrayList<DreamReality> dreamLists;
 
-    private SwipyRefreshLayout mSwipyRefreshLayout;
+    private PtrFrameLayout ptrFrameLayout;
     private int type;
     private long before;
 
@@ -50,12 +51,12 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
         ADD, REFRESH
     }
 
-    public RefreshDreamTask(Context context, SwipyRefreshLayout mSwipyRefreshLayout, DreamListAdapter dreamAdapter, ListView dreamListView, LinearLayout linearProcessLayout, int type){
+    public RefreshDreamTask(Context context, PtrFrameLayout ptrFrameLayout, DreamListAdapter dreamAdapter, ListView dreamListView, LinearLayout linearProcessLayout, int type){
         this.context = context;
 
         this.dreamAdapter = dreamAdapter;
         this.dreamListView = dreamListView;
-        this.mSwipyRefreshLayout = mSwipyRefreshLayout;
+        this.ptrFrameLayout = ptrFrameLayout;
         this.linearProcessLayout = linearProcessLayout;
         this.type = type;
     }
@@ -124,8 +125,8 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
                     Toast.LENGTH_SHORT).show();
         }
         // progressBar.setVisibility(View.GONE);
-        if(null != mSwipyRefreshLayout){
-            mSwipyRefreshLayout.setRefreshing(false);
+        if(null != ptrFrameLayout){
+            ptrFrameLayout.refreshComplete();
         }
 
         if(null != linearProcessLayout){
