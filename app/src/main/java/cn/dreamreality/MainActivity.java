@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -92,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
 
         final ActionBar actionBar = getSupportActionBar();
 
-        ptrFrame = (PtrFrameLayout) this.findViewById(R.id.dream_ptr_frame);
+        //ptrFrame = (PtrFrameLayout) this.findViewById(R.id.dream_ptr_frame);
 
         mAdapter = new DreamListAdapter(context, dreamLists);
         mUncopmletedListView = (ListView) this.findViewById(R.id.uncompleted_list_view);
@@ -102,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
         RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, null, mAdapter, mUncopmletedListView,linearProcessLayout, RefreshTask.Type.REFRESH.ordinal());;
         refreshDreamTask.execute();
 
-
+        /**
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -119,9 +120,9 @@ public class MainActivity extends ActionBarActivity {
                 return true;
                 //return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
-        });
+        });*/
 
-       /**
+
         mSwipyRefreshLayout = (SwipyRefreshLayout) this.findViewById(R.id.swipyrefreshlayout);
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -139,7 +140,7 @@ public class MainActivity extends ActionBarActivity {
 
                 refreshDreamTask.execute();
             }
-        });**/
+        });
 
 
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
