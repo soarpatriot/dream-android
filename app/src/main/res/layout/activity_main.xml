@@ -37,6 +37,35 @@
             </android.support.v7.widget.Toolbar>
 
 
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                xmlns:ptr="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/uncompleted_list_view"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                ptr:ptrAnimationStyle="flip"
+                ptr:ptrFriction="2"
+                ptr:ptrSmoothScrollDuration="200"/>
+
+
+
+
+
+            <!--
+
+             <cn.dreamreality.widget.PullAndLoadListView
+                android:id="@+id/uncompleted_list_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:listSelector="@android:color/transparent"
+                android:divider="@color/activity_bg_color"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true" />
+
+
             <in.srain.cube.views.ptr.PtrClassicFrameLayout
                 android:id="@+id/dream_ptr_frame"
                 xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
@@ -51,15 +80,25 @@
                 cube_ptr:ptr_pull_to_fresh="false"
                 >
 
-                    <ListView
-                        android:id="@+id/uncompleted_list_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                <ListView
+                    android:id="@+id/uncompleted_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@android:color/transparent"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:scrollbarStyle="outsideOverlay" />
+
+
+
+
 
 
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
-
+            -->
 
 
         <!--
@@ -121,7 +160,7 @@
             app:cpb_colors="@array/colors"
             app:cpb_rotation_speed="1.0"
             app:cpb_sweep_speed="1.0"
-            app:cpb_stroke_width="4dp"
+            app:cpb_stroke_width="3dp"
             app:cpb_min_sweep_angle="10"
             app:cpb_max_sweep_angle="300"/>
     </LinearLayout>

@@ -26,8 +26,11 @@ import java.util.ArrayList;
 
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
+import cn.dreamreality.interfaces.OnPrcessing;
 import cn.dreamreality.utils.Config;
+
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
+import in.srain.cube.views.loadmore.LoadMoreListViewContainer;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
@@ -38,26 +41,34 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
 
     private Context context;
     private DreamListAdapter dreamAdapter;
-    private ListView dreamListView;
+    private PullToRefreshListView dreamListView;
     private ArrayList<DreamReality> dreamLists;
 
     private PtrFrameLayout ptrFrameLayout;
     private int type;
     private long before;
 
-    private LinearLayout linearProcessLayout;
+    private OnPrcessing onPrcessing;
+    private boolean hasMore;
 
+    private LinearLayout linearProcessLayout;
+    private LoadMoreListViewContainer loadMoreListViewContainer;
+
+    private boolean loading;
     public enum Type{
         ADD, REFRESH
     }
 
-    public RefreshDreamTask(Context context, PtrFrameLayout ptrFrameLayout, DreamListAdapter dreamAdapter, ListView dreamListView, LinearLayout linearProcessLayout, int type){
+    public RefreshDreamTask(Context context,  DreamListAdapter dreamAdapter, PullToRefreshListView dreamListView, LinearLayout linearProcessLayout, int type){
         this.context = context;
 
         this.dreamAdapter = dreamAdapter;
         this.dreamListView = dreamListView;
-        this.ptrFrameLayout = ptrFrameLayout;
+
         this.linearProcessLayout = linearProcessLayout;
+
+
+
         this.type = type;
     }
 
@@ -116,8 +127,13 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
         if(result){
             if(type == Type.REFRESH.ordinal()){
                 dreamAdapter.setData(dreamLists);
+
+
             }else{
                 dreamAdapter.addData(dreamLists);
+
+
+                //dreamListView.removeFooterView();
             }
 
         }else{
@@ -125,13 +141,14 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
                     Toast.LENGTH_SHORT).show();
         }
         // progressBar.setVisibility(View.GONE);
-        if(null != ptrFrameLayout){
-            ptrFrameLayout.refreshComplete();
-        }
+
+        dreamListView.onRefreshComplete();
 
         if(null != linearProcessLayout){
             linearProcessLayout.setVisibility(View.GONE);
         }
+
+
     }
 
 
@@ -155,6 +172,7 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
 
                 jsonObject = new JSONObject(result);
                 JSONArray dreams = jsonObject.getJSONArray("data");
+                hasMore   = jsonObject.getBoolean("has_more");
                 int length = dreams.length();
                 for(int i = 0; i < length; i++){//遍历JSONArray
                     DreamReality dreamReality = new DreamReality();

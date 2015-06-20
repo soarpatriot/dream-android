@@ -33,6 +33,8 @@ dependencies {
     compile 'com.github.orangegangsters:swipy:1.2.0@aar'
     compile 'com.navercorp.pulltorefresh:library:3.2.0@aar'
 
+    compile 'in.srain.cube:cube-sdk:1.0.44@aar'
+
     compile 'com.github.castorflex.smoothprogressbar:library:1.1.0@aar'
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.1.0@aar'
     compile 'com.facebook.fresco:fresco:0.1.0+'
