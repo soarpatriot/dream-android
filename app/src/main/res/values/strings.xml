@@ -39,6 +39,10 @@
     <string name="back_or_not">请确认</string>
     <string name="next">下一步</string>
     <string name="back_no_save">少年，确定要推出写梦想，你所填写的内容将不被保存！</string>
+
+    <string name="shaonian_dream_tint">少年，写下你的梦想！</string>
+
+    <string name="dream_piture">图片</string>
     <!-- Strings related to login -->
     <string name="prompt_name">用户名</string>
     <string name="prompt_mobile">手机号码</string>

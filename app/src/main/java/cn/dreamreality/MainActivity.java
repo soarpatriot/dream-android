@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -115,7 +116,8 @@ public class MainActivity extends ActionBarActivity {
         final ActionBar actionBar = getSupportActionBar();
 
 
-
+        final Animation scaleAnimation =  AnimationUtils.loadAnimation(this, R.anim.write_dream_layout);
+        final Animation scaleShowAnimation =  AnimationUtils.loadAnimation(this, R.anim.write_dream_layout_show);
         String footerDefaultText = context.getString(R.string.drop_down_list_footer_default_text);
         String footerLoadingText = context.getString(R.string.drop_down_list_footer_loading_text);
         String footerNoMoreText = context.getString(R.string.drop_down_list_footer_no_more_text);
@@ -171,7 +173,80 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        mPullRefreshListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
+            private int mListViewFirstItem = 0;
+            //listView中第一项的在屏幕中的位置
+            private int mScreenY = 0;
+            //是否向上滚动
+            private boolean mIsScrollToUp = false;
+
+            private boolean isScrollToUp = false;
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if(scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_FLING ){
+                    onScrollDirectionChanged(isScrollToUp);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(view.getChildCount() > 0)
+                {
+
+                    View childAt = view.getChildAt(view.getChildCount() -1 );
+                    int[] location = new int[2];
+                    childAt.getLocationOnScreen(location);
+                    Log.d("onScroll", "firstVisibleItem= "+firstVisibleItem+" , y="+location[1]);
+
+                    if(firstVisibleItem!=mListViewFirstItem)
+                    {
+                        if(firstVisibleItem>mListViewFirstItem)
+                        {
+                            Log.e("--->", "向上滑动");
+                            isScrollToUp = true;
+                        }else{
+                            Log.e("--->", "向下滑动");
+                            isScrollToUp = false;
+                        }
+                        mListViewFirstItem = firstVisibleItem;
+                        mScreenY = location[1];
+                    }else{
+                        if(mScreenY>location[1])
+                        {
+                            Log.i("--->", "->向上滑动");
+                            isScrollToUp = true;
+                        }
+                        else if(mScreenY<location[1])
+                        {
+                            Log.i("--->", "->向下滑动");
+                            isScrollToUp = false;
+                        }
+                        mScreenY = location[1];
+                    }
+
+
+
+                    if(mIsScrollToUp!=isScrollToUp)
+                    {
+                        //onScrollDirectionChanged(isScrollToUp);
+                    }
+
+                }
+            }
+
+            private void onScrollDirectionChanged(boolean isScrollToUp)
+            {
+               if(isScrollToUp){
+                   //linearProcessLayout.startAnimation(scaleAnimation);
+
+               } else {
+
+
+                   //linearProcessLayout.startAnimation(scaleShowAnimation);
+               }
+            }
+        });
 
 
         //mUncopmletedListView.setOnScrollListener(new InfiniteScrollListener());
