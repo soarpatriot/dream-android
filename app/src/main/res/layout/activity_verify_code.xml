@@ -11,7 +11,7 @@
         app:popupTheme="@style/BluePopupMenu"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:title="@string/action_register"
+        android:title="@string/verify_code"
         >
 
     </android.support.v7.widget.Toolbar>

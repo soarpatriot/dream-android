@@ -39,7 +39,7 @@
                     android:id="@+id/mobile"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_name"
+                    android:hint="@string/prompt_mobile"
                     android:textSize="18dp"
                     android:inputType="text"
                     android:singleLine="true"/>

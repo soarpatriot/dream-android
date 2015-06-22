@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -47,6 +48,7 @@ import cn.dreamreality.tasks.RefreshTask;
 import cn.dreamreality.utils.SettingsUtils;
 import cn.dreamreality.view.SlidingTabLayout;
 
+import cn.dreamreality.widget.DropDownListView;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import in.srain.cube.views.loadmore.LoadMoreContainer;
 import in.srain.cube.views.loadmore.LoadMoreHandler;
@@ -94,6 +96,8 @@ public class MainActivity extends ActionBarActivity {
 
     private PullToRefreshListView mPullRefreshListView;
 
+    private DropDownListView dropDownListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,51 +117,57 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         // Set up the action bar.
 
-        final ActionBar actionBar = getSupportActionBar();
-
-
-        final Animation scaleAnimation =  AnimationUtils.loadAnimation(this, R.anim.write_dream_layout);
-        final Animation scaleShowAnimation =  AnimationUtils.loadAnimation(this, R.anim.write_dream_layout_show);
-        String footerDefaultText = context.getString(R.string.drop_down_list_footer_default_text);
-        String footerLoadingText = context.getString(R.string.drop_down_list_footer_loading_text);
-        String footerNoMoreText = context.getString(R.string.drop_down_list_footer_no_more_text);
 
 
 
-        //LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //String footerLayout = (RelativeLayout) inflater.inflate(R.layout.drop_down_list_footer);
-        //inflater.inflate()
-        //String footerButton = (Button)footerLayout.findViewById (R.id.drop_down_list_footer_button);
-        //String footerButton.setDrawingCacheBackgroundColor(0);
-        //String footerButton.setEnabled(true);
 
-        //String footerProgressBar = (ProgressBar)footerLayout.findViewById(R.id.drop_down_list_footer_progress_bar);
-        //ptrFrame.addFooterView(footerLayout);
 
-        // header
-        //final StoreHouseHeader header = new StoreHouseHeader(context);
-        //header.initWithStringArray(R.array.storehouse);
-        //header.setPadding(0, LocalDisplay.dp2px(15), 0, 0);
 
-        //header.initWithString("梦想照近显示");
-        // header
-        //final StoreHouseHeader header = (StoreHouseHeader)this.findViewById(R.id.store_house_ptr_image_content);
-        //ptrFrame = (PtrClassicFrameLayout) this.findViewById(R.id.dream_ptr_frame);
 
-        //ptrFrame.setHeaderView(header);
         mAdapter = new DreamListAdapter(context, dreamLists);
-        mPullRefreshListView = (PullToRefreshListView) this.findViewById(R.id.uncompleted_list_view);
-        mPullRefreshListView.setAdapter(mAdapter);
-        mPullRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
-        //setPullAndLoadMoreListener();
+        dropDownListView = (DropDownListView)  this.findViewById(R.id.list_view);
+        dropDownListView.setAdapter(mAdapter);
 
-
-
-        RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, mAdapter, mPullRefreshListView,linearProcessLayout,RefreshTask.Type.REFRESH.ordinal());;
+        RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, mAdapter, null,linearProcessLayout,RefreshTask.Type.REFRESH.ordinal());;
         refreshDreamTask.execute();
 
+        dropDownListView.setOnDropDownListener(new DropDownListView.OnDropDownListener() {
 
-        mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ListView>() {
+            @Override
+            public void onDropDown() {
+                RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, mAdapter, dropDownListView,null,RefreshTask.Type.REFRESH.ordinal());;
+                refreshDreamTask.execute();
+
+            }
+        });
+
+        // set on bottom listener
+        dropDownListView.setOnBottomListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                RefreshDreamTask refreshDreamTask  = new RefreshDreamTask(context, mAdapter, dropDownListView,null,RefreshTask.Type.ADD.ordinal());;
+                refreshDreamTask.execute();
+            }
+        });
+        dropDownListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+        //mPullRefreshListView = (PullToRefreshListView) this.findViewById(R.id.list_view);
+        //mPullRefreshListView.setAdapter(mAdapter);
+        //mPullRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+
+
+
+
+
+
+        /*mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ListView>() {
 
 
             @Override
@@ -237,17 +247,10 @@ public class MainActivity extends ActionBarActivity {
 
             private void onScrollDirectionChanged(boolean isScrollToUp)
             {
-               if(isScrollToUp){
-                   //linearProcessLayout.startAnimation(scaleAnimation);
 
-               } else {
-
-
-                   //linearProcessLayout.startAnimation(scaleShowAnimation);
-               }
             }
         });
-
+*/
 
         //mUncopmletedListView.setOnScrollListener(new InfiniteScrollListener());
         //dialog = ProgressDialog.show(this,"",true);
@@ -409,7 +412,7 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             case R.id.action_verify:
 
-                intent = new Intent(this, VerifyCodeActivity.class);
+                intent = new Intent(this, NicknameActivity.class);
                 intent.putExtra("mobile","18603331140");
                 intent.putExtra("password","22143521");
                 startActivity(intent);
@@ -418,9 +421,7 @@ public class MainActivity extends ActionBarActivity {
                 SettingsUtils.removeString(this.getApplicationContext(), "token");
 
                 return true;
-            case R.id.action_settings:
-                //popupMenu.show();
-                //showSettings(item.getActionView());
+
 
             default:
 

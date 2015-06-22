@@ -22,13 +22,17 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 import cn.dreamreality.adapter.DreamListAdapter;
 import cn.dreamreality.entities.DreamReality;
 import cn.dreamreality.interfaces.OnPrcessing;
 import cn.dreamreality.utils.Config;
 
+import cn.dreamreality.widget.DropDownListView;
 import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import in.srain.cube.views.loadmore.LoadMoreListViewContainer;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -41,7 +45,7 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
 
     private Context context;
     private DreamListAdapter dreamAdapter;
-    private PullToRefreshListView dreamListView;
+    private DropDownListView dreamListView;
     private ArrayList<DreamReality> dreamLists;
 
     private PtrFrameLayout ptrFrameLayout;
@@ -59,7 +63,7 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
         ADD, REFRESH
     }
 
-    public RefreshDreamTask(Context context,  DreamListAdapter dreamAdapter, PullToRefreshListView dreamListView, LinearLayout linearProcessLayout, int type){
+    public RefreshDreamTask(Context context,  DreamListAdapter dreamAdapter, DropDownListView dreamListView, LinearLayout linearProcessLayout, int type){
         this.context = context;
 
         this.dreamAdapter = dreamAdapter;
@@ -128,11 +132,17 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
             if(type == Type.REFRESH.ordinal()){
                 dreamAdapter.setData(dreamLists);
 
-
+                if(null != dreamListView) {
+                    dreamListView.setHasMore(hasMore);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss");
+                    dreamListView.onDropDownComplete("更新于：" + dateFormat.format(new Date()));
+                }
             }else{
                 dreamAdapter.addData(dreamLists);
-
-
+                dreamListView.setHasMore(hasMore);
+                if(null != dreamListView) {
+                    dreamListView.onBottomComplete();
+                }
                 //dreamListView.removeFooterView();
             }
 
@@ -142,7 +152,7 @@ public class RefreshDreamTask extends AsyncTask<Void, Void, Boolean>
         }
         // progressBar.setVisibility(View.GONE);
 
-        dreamListView.onRefreshComplete();
+
 
         if(null != linearProcessLayout){
             linearProcessLayout.setVisibility(View.GONE);
